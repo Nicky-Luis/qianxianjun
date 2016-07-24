@@ -1,4 +1,4 @@
-package com.luis.nicky.qianxianjun.utils;
+package com.luis.nicky.qianxianjun.common.utils;
 
 import android.content.Context;
 import android.view.Gravity;

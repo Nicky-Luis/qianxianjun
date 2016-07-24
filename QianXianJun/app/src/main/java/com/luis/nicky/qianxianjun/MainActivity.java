@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.luis.nicky.qianxianjun.model.Person;
-import com.luis.nicky.qianxianjun.utils.ToastUtil;
+import com.luis.nicky.qianxianjun.common.utils.ToastUtil;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.listener.SaveListener;
@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         bombInit();
 
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
