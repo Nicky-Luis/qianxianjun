@@ -1,8 +1,5 @@
 package com.luis.nicky.qianxianjun.model;
 
-import com.luis.nicky.qianxianjun.entry.ExpectedStandard;
-import com.luis.nicky.qianxianjun.entry.PhotoGallery;
-
 import java.util.List;
 
 import cn.bmob.v3.BmobObject;
@@ -14,6 +11,8 @@ import cn.bmob.v3.BmobObject;
 public class Person extends BmobObject {
 
     ///////////////////////////用户的基本信息///////////////////////////////
+    //用户id
+    private String UUID;
     //名字
     private String mUserName;
     //微信号
@@ -46,10 +45,7 @@ public class Person extends BmobObject {
     private List<String> mUserHobby;
     //其他描述
     private String mUserDescription;
-    //用户的相册
-    private PhotoGallery mUserPhotoGallery;
-    //标准
-    private ExpectedStandard mUserStandard;
+
 
     /////////////////////////////////////////////
 
@@ -122,19 +118,6 @@ public class Person extends BmobObject {
         return mUserDescription;
     }
 
-    public PhotoGallery getPhotoGallery() {
-        return mUserPhotoGallery;
-    }
-
-    public ExpectedStandard getExpectedStandard() {
-        return mUserStandard;
-    }
-
-    public void setExpectedStandard(ExpectedStandard expectedStandard) {
-        mUserStandard = expectedStandard;
-    }
-
-
     public void setName(String userName) {
         this.mUserName = userName;
     }
@@ -199,9 +182,4 @@ public class Person extends BmobObject {
         this.mUserDescription = userDescription;
     }
 
-    public void setPhotoGallery(PhotoGallery photoGallery) {
-        mUserPhotoGallery = photoGallery;
-    }
-
-    /////////////////////////////////////////////////////////
 }
