@@ -1,5 +1,7 @@
 package com.luis.nicky.qianxianjun.model;
 
+import com.luis.nicky.qianxianjun.presenter.bean.PersonBean;
+
 import java.util.List;
 
 import cn.bmob.v3.BmobObject;
@@ -52,71 +54,24 @@ public class Person extends BmobObject {
     public Person() {
     }
 
+    public Person(PersonBean personBean) {
+        this.setName(personBean.mUserName);
+        this.setWechatId(personBean.mUserWechatId);
+        this.setPhone(personBean.mUserPhone);
+        this.setQQ(personBean.mUserQQ);
+        this.setWeibo(personBean.mUserWeibo);
+        this.setArea(personBean.mUserArea);
+        this.setBirthday(personBean.mUserBirthday);
+        this.setHeight(personBean.mUserHeight);
+        this.setBodyWeight(personBean.mUserBodyWeight);
+        this.setJob(personBean.mUserJob);
+        this.setEducationLevel(personBean.mUserEducationLevel);
+        this.setUniversity(personBean.mUserUniversity);
+        this.setProfessional(personBean.mUserProfessional);
+        this.setDescription(personBean.mUserDescription);
+    }
     //////////////////////////////////////////////////
 
-    public String getName() {
-        return mUserName;
-    }
-
-    public String getWechatId() {
-        return mUserWechatId;
-    }
-
-    public String getPhone() {
-        return mUserPhone;
-    }
-
-    public String getQQ() {
-        return mUserQQ;
-    }
-
-    public String getWeibo() {
-        return mUserWeibo;
-    }
-
-    public String getArea() {
-        return mUserArea;
-    }
-
-    public String getBirthday() {
-        return mUserBirthday;
-    }
-
-    public int getHeight() {
-        return mUserHeight;
-    }
-
-    public int getBodyWeight() {
-        return mUserBodyWeight;
-    }
-
-    public String getJob() {
-        return mUserJob;
-    }
-
-    public String getEducationLevel() {
-        return mUserEducationLevel;
-    }
-
-    public String getUniversity() {
-        return mUserUniversity;
-    }
-
-    public String getProfessional() {
-        return mUserProfessional;
-    }
-
-    public List<String> getCharacter() {
-        return mUserCharacter;
-    }
-
-    public List<String> getHobby() {
-        return mUserHobby;
-    }
-
-    public String getDescription() {
-        return mUserDescription;
-    }
 
     public void setName(String userName) {
         this.mUserName = userName;
@@ -180,6 +135,73 @@ public class Person extends BmobObject {
 
     public void setDescription(String userDescription) {
         this.mUserDescription = userDescription;
+    }
+
+
+    ////////////////////////getter//////////////////////////////////
+
+    public String getName() {
+        return mUserName;
+    }
+
+    public String getWechatId() {
+        return mUserWechatId;
+    }
+
+    public String getPhone() {
+        return mUserPhone;
+    }
+
+    public String getQQ() {
+        return mUserQQ;
+    }
+
+    public String getWeibo() {
+        return mUserWeibo;
+    }
+
+    public String getArea() {
+        return mUserArea;
+    }
+
+    public String getBirthday() {
+        return mUserBirthday;
+    }
+
+    public int getHeight() {
+        return mUserHeight;
+    }
+
+    public int getBodyWeight() {
+        return mUserBodyWeight;
+    }
+
+    public String getJob() {
+        return mUserJob;
+    }
+
+    public String getEducationLevel() {
+        return mUserEducationLevel;
+    }
+
+    public String getUniversity() {
+        return mUserUniversity;
+    }
+
+    public String getProfessional() {
+        return mUserProfessional;
+    }
+
+    public List<String> getCharacter() {
+        return mUserCharacter;
+    }
+
+    public List<String> getHobby() {
+        return mUserHobby;
+    }
+
+    public String getDescription() {
+        return mUserDescription;
     }
 
 }

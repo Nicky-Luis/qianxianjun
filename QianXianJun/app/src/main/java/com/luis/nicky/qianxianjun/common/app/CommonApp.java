@@ -21,7 +21,7 @@ import cn.bmob.v3.Bmob;
 public class CommonApp extends Application {
     private static CommonApp mInstance;
     //检测内存泄露
-    private RefWatcher refWatcher;
+    //private RefWatcher refWatcher;
     /**
      * 屏幕宽度
      */
@@ -40,7 +40,7 @@ public class CommonApp extends Application {
         super.onCreate();
         mInstance = this;
         //检测内存泄露
-        LeakCanary.install(this);
+       // LeakCanary.install(this);
         initScreenSize();
         bombInit();
     }
@@ -74,9 +74,9 @@ public class CommonApp extends Application {
     /**
      * 在自己的Application中添加如下代码
      */
-    public static RefWatcher getRefWatcher(Context context) {
-        return mInstance.refWatcher;
-    }
+//    public static RefWatcher getRefWatcher(Context context) {
+//        return mInstance.refWatcher;
+//    }
 
     //获取实例
     public static CommonApp getInstance() {

@@ -1,5 +1,6 @@
 package com.luis.nicky.qianxianjun.ui;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -8,6 +9,7 @@ import com.luis.nicky.qianxianjun.R;
 import com.luis.nicky.qianxianjun.common.basic.BaseActivity;
 
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 public class AddPersonActivity extends BaseActivity {
 
@@ -48,6 +50,31 @@ public class AddPersonActivity extends BaseActivity {
     @InjectView(R.id.edt_others)
     EditText userOthers;
 
+    @OnClick(value = {R.id.btn_back, R.id.btn_next})
+    public void onclick(View v) {
+        switch (v.getId()) {
+            //搜索
+            case R.id.btn_back:
+                finish();
+                break;
+
+            //添加
+            case R.id.btn_next:
+                startToTarget();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 跳转到填写信息页面
+     * */
+    private void startToTarget() {
+        Intent intent = new Intent(AddPersonActivity.this, TargetPersonActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public int setLayoutId() {

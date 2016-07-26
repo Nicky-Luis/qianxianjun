@@ -8,6 +8,7 @@ import com.luis.nicky.qianxianjun.R;
 import com.luis.nicky.qianxianjun.common.basic.BaseActivity;
 
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 public class TargetPersonActivity extends BaseActivity {
 
@@ -41,6 +42,31 @@ public class TargetPersonActivity extends BaseActivity {
     //其他
     @InjectView(R.id.edt_others_target)
     EditText userOthers;
+
+    @OnClick(value = {R.id.btn_back, R.id.btn_next})
+    public void onclick(View v) {
+        switch (v.getId()) {
+            //搜索
+            case R.id.btn_back:
+                finish();
+                break;
+
+            //添加
+            case R.id.btn_save:
+                startSaveInfo();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 保存信息
+     */
+    private void startSaveInfo() {
+
+    }
 
     @Override
     public int setLayoutId() {

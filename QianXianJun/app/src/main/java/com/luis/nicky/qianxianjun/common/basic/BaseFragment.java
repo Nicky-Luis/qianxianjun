@@ -69,8 +69,8 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
             if (rootView == null) {
                 rootView = inflater.inflate(viewId, null);
                 //检测是否有内存泄露
-                RefWatcher refWatcher = CommonApp.getInstance().getRefWatcher(getActivity());
-                refWatcher.watch(this);
+                //RefWatcher refWatcher = CommonApp.getInstance().getRefWatcher(getActivity());
+               // refWatcher.watch(this);
                 //view注入
                 ButterKnife.inject(this, rootView);
 

@@ -47,8 +47,8 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
             v = LayoutInflater.from(this).inflate(setLayoutId(), null);
             setContentView(v);
             //检测是否有内存泄露
-            RefWatcher refWatcher = CommonApp.getInstance().getRefWatcher(this);
-            refWatcher.watch(this);
+           // RefWatcher refWatcher = CommonApp.getInstance().getRefWatcher(this);
+           // refWatcher.watch(this);
             // 初始化View注入
             ButterKnife.inject(this);
             loadLayout(v);
