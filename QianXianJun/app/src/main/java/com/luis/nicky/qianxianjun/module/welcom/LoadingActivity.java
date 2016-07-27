@@ -1,4 +1,4 @@
-package com.luis.nicky.qianxianjun.ui;
+package com.luis.nicky.qianxianjun.module.welcom;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -20,7 +20,7 @@ public class LoadingActivity extends BaseActivity {
     }
 
     @Override
-    protected void setUpView() {
+    protected void onInitialize() {
         init();
     }
 

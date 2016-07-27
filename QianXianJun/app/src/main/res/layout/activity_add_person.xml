@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="com.luis.nicky.qianxianjun.ui.AddPersonActivity">
+              tools:context=".module.add.AddPersonActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -113,6 +113,7 @@
                         android:id="@+id/radioButton_female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="true"
                         android:text="女"/>
                 </RadioGroup>
             </LinearLayout>
@@ -134,7 +135,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"
-                    android:hint="请输入身高"/>
+                    android:hint="请输入身高"
+                    android:inputType="number"/>
             </LinearLayout>
 
             <LinearLayout
@@ -154,7 +156,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"
-                    android:hint="请输入体重"/>
+                    android:hint="请输入体重"
+                    android:inputType="number"/>
             </LinearLayout>
 
             <LinearLayout
@@ -259,6 +262,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="大专及以下"/>
+
+                    <RadioButton
+                        android:id="@+id/radioButton_others"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="其他"/>
                 </RadioGroup>
             </LinearLayout>
 
@@ -323,12 +333,6 @@
                     android:inputType="textMultiLine"/>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btn_add_photos"
-                android:layout_width="200dp"
-                android:layout_height="55dp"
-                android:layout_gravity="center_horizontal"
-                android:text="添加照片"/>
         </LinearLayout>
     </ScrollView>
 

@@ -22,23 +22,26 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.LoadingActivity">
+        <activity android:name=".module.welcom.LoadingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.SignInActivity"/>
+        <activity android:name=".module.welcom.SignInActivity"/>
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/title_activity_main"/>
-        <activity android:name=".ui.AddPersonActivity"/>
-        <activity android:name=".ui.PersonDetailActivity"/>
-        <activity android:name=".ui.TargetPersonActivity">
+        <activity android:name=".module.add.AddPersonActivity"/>
+        <activity android:name=".module.welcom.PersonDetailActivity"/>
+        <activity android:name=".module.add.AddTargetActivity">
         </activity>
-        <activity android:name=".ui.SearchActivity">
+        <activity android:name=".module.search.SearchActivity">
         </activity>
+        <activity android:name=".module.add.AddPhotoActivity">
+        </activity>
+        <activity android:name="com.luis.nicky.qianxianjun.common.widget.gallery.imageloader.GalleyActivity" />
     </application>
 
 </manifest>

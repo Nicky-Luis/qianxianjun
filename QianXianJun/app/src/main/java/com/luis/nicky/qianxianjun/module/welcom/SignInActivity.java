@@ -1,10 +1,11 @@
-package com.luis.nicky.qianxianjun.ui;
+package com.luis.nicky.qianxianjun.module.welcom;
 
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.luis.nicky.qianxianjun.MainActivity;
 import com.luis.nicky.qianxianjun.R;
 import com.luis.nicky.qianxianjun.common.basic.BaseActivity;
 import com.luis.nicky.qianxianjun.common.utils.ToastUtil;
@@ -50,7 +51,7 @@ public class SignInActivity extends BaseActivity {
     }
 
     @Override
-    protected void setUpView() {
+    protected void onInitialize() {
 
     }
 

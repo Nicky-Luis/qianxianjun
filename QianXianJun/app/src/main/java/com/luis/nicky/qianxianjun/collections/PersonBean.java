@@ -1,4 +1,4 @@
-package com.luis.nicky.qianxianjun.presenter.bean;
+package com.luis.nicky.qianxianjun.collections;
 
 import java.util.List;
 
@@ -10,6 +10,8 @@ public class PersonBean {
     public String mUserName;
     //微信号
     public String mUserWechatId;
+    //性别
+    public int mUserSex;
     //电话
     public String mUserPhone;
     //qq号码
@@ -27,7 +29,7 @@ public class PersonBean {
     //工作职业
     public String mUserJob;
     //学历
-    public String mUserEducationLevel;
+    public int mUserEducationLevel;
     //大学
     public String mUserUniversity;
     //专业

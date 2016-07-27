@@ -10,11 +10,11 @@ public class Photo extends BmobObject{
 
     ////////////////////////////////////
     //照片的类型
-    private String mPhotoType;
+    private int mPhotoType;
     //照片的所属的用户ID
     private String mUserID;
 
-    public String getmPhotoType() {
+    public int getmPhotoType() {
         return mPhotoType;
     }
 
@@ -35,7 +35,7 @@ public class Photo extends BmobObject{
     //照片的描述
     private String mPhotoDescripte;
 
-    public void setmPhotoType(String mPhotoType) {
+    public void setmPhotoType(int mPhotoType) {
         this.mPhotoType = mPhotoType;
     }
 

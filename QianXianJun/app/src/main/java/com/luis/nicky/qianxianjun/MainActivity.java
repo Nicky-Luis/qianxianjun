@@ -1,12 +1,14 @@
-package com.luis.nicky.qianxianjun.ui;
+package com.luis.nicky.qianxianjun;
 
 import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.View;
 
-import com.luis.nicky.qianxianjun.R;
+import com.luis.nicky.qianxianjun.module.add.AddPersonActivity;
 import com.luis.nicky.qianxianjun.common.basic.BaseActivity;
 import com.luis.nicky.qianxianjun.common.utils.ToastUtil;
+import com.luis.nicky.qianxianjun.module.add.AddPhotoActivity;
+import com.luis.nicky.qianxianjun.module.search.SearchActivity;
 
 import butterknife.OnClick;
 
@@ -41,7 +43,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void setUpView() {
+    protected void onInitialize() {
 
     }
 
@@ -62,7 +64,7 @@ public class MainActivity extends BaseActivity {
      * 添加
      */
     private void startAdd() {
-        Intent intent = new Intent(MainActivity.this, AddPersonActivity.class);
+        Intent intent = new Intent(MainActivity.this, AddPhotoActivity.class);
         startActivity(intent);
     }
 

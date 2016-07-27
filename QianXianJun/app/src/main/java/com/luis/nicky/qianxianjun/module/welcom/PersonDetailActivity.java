@@ -1,7 +1,5 @@
-package com.luis.nicky.qianxianjun.ui;
+package com.luis.nicky.qianxianjun.module.welcom;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.view.View;
 
 import com.luis.nicky.qianxianjun.R;
@@ -20,7 +18,7 @@ public class PersonDetailActivity extends BaseActivity {
     }
 
     @Override
-    protected void setUpView() {
+    protected void onInitialize() {
 
     }
 

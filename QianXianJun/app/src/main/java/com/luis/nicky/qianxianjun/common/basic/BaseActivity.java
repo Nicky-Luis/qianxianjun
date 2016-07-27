@@ -17,10 +17,8 @@ import android.view.Window;
 import android.widget.Toast;
 
 
-import com.luis.nicky.qianxianjun.common.app.CommonApp;
 import com.luis.nicky.qianxianjun.common.manager.ActivityManager;
 import com.luis.nicky.qianxianjun.common.widget.CustomConfirmDialog;
-import com.squareup.leakcanary.RefWatcher;
 
 import butterknife.ButterKnife;
 
@@ -54,7 +52,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
             loadLayout(v);
         }
         initPresenter();
-        setUpView();
+        onInitialize();
     }
 
     /**
@@ -64,7 +62,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
      */
     public abstract int setLayoutId();
     protected abstract void loadLayout(View v);
-    protected abstract void setUpView();
+    protected abstract void onInitialize();
     public abstract void initPresenter();
 
     @Override

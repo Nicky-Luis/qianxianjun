@@ -1,4 +1,4 @@
-package com.luis.nicky.qianxianjun.ui;
+package com.luis.nicky.qianxianjun.module.search;
 
 import android.view.View;
 
@@ -32,7 +32,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     @Override
-    protected void setUpView() {
+    protected void onInitialize() {
 
     }
 

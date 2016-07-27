@@ -1,5 +1,7 @@
 package com.luis.nicky.qianxianjun.model;
 
+import com.luis.nicky.qianxianjun.collections.PersonBean;
+
 import java.util.List;
 
 import cn.bmob.v3.BmobObject;
@@ -10,9 +12,19 @@ import cn.bmob.v3.BmobObject;
  */
 public class TargetPerson extends BmobObject {
 
+    public int getmSex() {
+        return mSex;
+    }
+
+    public void setmSex(int mSex) {
+        this.mSex = mSex;
+    }
+
     ///////////////////////////用户的基本信息///////////////////////////////
     //用户id
-    private String UUID;
+    private int mSex;
+    //用户id
+    private String mOwnerId;
     //地区
     private String mUserArea;
     //生日
@@ -24,7 +36,7 @@ public class TargetPerson extends BmobObject {
     //工作职业
     private String mUserJob;
     //学历
-    private String mUserEducationLevel;
+    private int mUserEducationLevel;
     //大学
     private String mUserUniversity;
     //专业
@@ -42,7 +54,23 @@ public class TargetPerson extends BmobObject {
     public TargetPerson() {
     }
 
+    public TargetPerson(PersonBean personBean) {
+        this.setmSex(personBean.mUserSex);
+        this.setArea(personBean.mUserArea);
+        this.setBirthday(personBean.mUserBirthday);
+        this.setHeight(personBean.mUserHeight);
+        this.setBodyWeight(personBean.mUserBodyWeight);
+        this.setJob(personBean.mUserJob);
+        this.setEducationLevel(personBean.mUserEducationLevel);
+        this.setUniversity(personBean.mUserUniversity);
+        this.setProfessional(personBean.mUserProfessional);
+        this.setDescription(personBean.mUserDescription);
+    }
+
     //////////////////////////////////////////////////
+    public String getOwnerId() {
+        return mOwnerId;
+    }
 
     public String getArea() {
         return mUserArea;
@@ -64,7 +92,7 @@ public class TargetPerson extends BmobObject {
         return mUserJob;
     }
 
-    public String getEducationLevel() {
+    public int getEducationLevel() {
         return mUserEducationLevel;
     }
 
@@ -88,6 +116,10 @@ public class TargetPerson extends BmobObject {
         return mUserDescription;
     }
 
+    public void setOwnerID(String id) {
+        this.mOwnerId = id;
+    }
+
     public void setArea(String userArea) {
         this.mUserArea = userArea;
     }
@@ -108,7 +140,7 @@ public class TargetPerson extends BmobObject {
         this.mUserJob = userJob;
     }
 
-    public void setEducationLevel(String userEducationLevel) {
+    public void setEducationLevel(int userEducationLevel) {
         this.mUserEducationLevel = userEducationLevel;
     }
 

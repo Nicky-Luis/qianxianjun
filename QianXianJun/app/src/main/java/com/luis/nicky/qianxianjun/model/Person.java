@@ -1,6 +1,6 @@
 package com.luis.nicky.qianxianjun.model;
 
-import com.luis.nicky.qianxianjun.presenter.bean.PersonBean;
+import com.luis.nicky.qianxianjun.collections.PersonBean;
 
 import java.util.List;
 
@@ -12,9 +12,21 @@ import cn.bmob.v3.BmobObject;
  */
 public class Person extends BmobObject {
 
+
     ///////////////////////////用户的基本信息///////////////////////////////
     //用户id
     private String UUID;
+
+    public int getmUserSex() {
+        return mUserSex;
+    }
+
+    public void setmUserSex(int mUserSex) {
+        this.mUserSex = mUserSex;
+    }
+
+    //性别
+    private int mUserSex;
     //名字
     private String mUserName;
     //微信号
@@ -36,7 +48,7 @@ public class Person extends BmobObject {
     //工作职业
     private String mUserJob;
     //学历
-    private String mUserEducationLevel;
+    private int mUserEducationLevel;
     //大学
     private String mUserUniversity;
     //专业
@@ -56,6 +68,7 @@ public class Person extends BmobObject {
 
     public Person(PersonBean personBean) {
         this.setName(personBean.mUserName);
+        this.setmUserSex(personBean.mUserSex);
         this.setWechatId(personBean.mUserWechatId);
         this.setPhone(personBean.mUserPhone);
         this.setQQ(personBean.mUserQQ);
@@ -70,8 +83,11 @@ public class Person extends BmobObject {
         this.setProfessional(personBean.mUserProfessional);
         this.setDescription(personBean.mUserDescription);
     }
-    //////////////////////////////////////////////////
 
+    //////////////////////setter/////////////////////////////////
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
+    }
 
     public void setName(String userName) {
         this.mUserName = userName;
@@ -113,7 +129,7 @@ public class Person extends BmobObject {
         this.mUserJob = userJob;
     }
 
-    public void setEducationLevel(String userEducationLevel) {
+    public void setEducationLevel(int userEducationLevel) {
         this.mUserEducationLevel = userEducationLevel;
     }
 
@@ -140,7 +156,11 @@ public class Person extends BmobObject {
 
     ////////////////////////getter//////////////////////////////////
 
-    public String getName() {
+    public String getUUID() {
+        return UUID;
+    }
+
+    public String getUserName() {
         return mUserName;
     }
 
@@ -180,7 +200,7 @@ public class Person extends BmobObject {
         return mUserJob;
     }
 
-    public String getEducationLevel() {
+    public int getEducationLevel() {
         return mUserEducationLevel;
     }
 
