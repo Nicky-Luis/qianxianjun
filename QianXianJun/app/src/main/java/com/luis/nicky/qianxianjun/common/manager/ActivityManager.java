@@ -5,87 +5,105 @@ import android.app.Activity;
 import java.util.Stack;
 
 public class ActivityManager {
-	private static Stack<Activity> activityStack;
-	private static ActivityManager instance;
 
-	private ActivityManager() {
-	}
+    /**
+     * Stack 中对应的Activity列表  （也可以写做 Stack<Activity>）
+     */
+    private static Stack<Activity> activityStack;
+    private static ActivityManager instance;
 
-	public static Stack<Activity> getActivityStack() {
-		return activityStack;
-	}
+    private ActivityManager() {
+    }
 
-	public static void setActivityStack(Stack<Activity> activityStack) {
-		ActivityManager.activityStack = activityStack;
-	}
+    public static Stack<Activity> getActivityStack() {
+        return activityStack;
+    }
 
-	public static ActivityManager getInstence() {
-		if (instance == null) {
-			instance = new ActivityManager();
-		}
-		
-		return instance;
-	}
+    /**
+     * @return ActivityManager
+     * @描述 获取栈管理工具
+     */
+    public static ActivityManager getInstence() {
+        if (instance == null) {
+            instance = new ActivityManager();
+        }
+        return instance;
+    }
 
-	//出栈
-	public void popActivity(Activity activity) {
-		if (activity != null) {
-			activity.finish();
-			activityStack.remove(activity);
-			activity = null;
-		}
-	}
+    /**
+     * 推出栈顶Activity
+     */
+    public void popActivity(Activity activity) {
+        if (activityStack == null) {
+            return;
+        }
+        if (activity != null) {
+            activity.finish();
+            activityStack.remove(activity);
+            activity = null;
+        }
+    }
 
-	//当前activity
-	public Activity currentActivity() {
-		Activity activity = null;
-		if (!activityStack.empty())
-			activity = activityStack.lastElement();
-		return activity;
-	}
+    /**
+     * 获得当前栈顶Activity
+     */
+    public Activity currentActivity() {
+        //lastElement()获取最后个子元素，这里是栈顶的Activity
+        if (activityStack == null || activityStack.size() == 0) {
+            return null;
+        }
+        return activityStack.lastElement();
+    }
 
-	//进栈
-	public void pushActivity(Activity activity) {
-		if (activityStack == null) {
-			activityStack = new Stack<Activity>();
-		}
-		activityStack.add(activity);
-	}
+    /**
+     * 将当前Activity推入栈中
+     */
+    public void pushActivity(Activity activity) {
+        if (activityStack == null) {
+            activityStack = new Stack<>();
+        }
+        activityStack.add(activity);
+    }
 
-	//全出
-	@SuppressWarnings("rawtypes")
-	public void popAllActivityExceptOne(Class cls) {
-//		while (true) {
-			
-//		for (Activity activity: activityStack) {
-//			if (activity.getClass().equals(cls)) {
-//				continue;
-//			}	
-//			popActivity(activity);
-//		}
-			
-//			Activity activity = currentActivity();
-//			if (activity == null) {
-//				break;
-//			}
-//			if (activity.getClass().equals(cls)) {
-//				break;
-//			}
-			
-//		}
-	}
+    /**
+     * 弹出最后一个
+     */
+    public void popTopActivity() {
+        Activity activity = currentActivity();
+        if (activity == null) {
+            return;
+        }
+        popActivity(activity);
+    }
 
-	/**
-	 * 退出app
-	 */
-	public void exitApplication() {
-		System.out.println("退出app");
-		while (true) {
-			Activity activity = currentActivity();
-			if (activity == null) {
-				break;
-			}
-			popActivity(activity);
-		}
-	}
+    /**
+     * 弹出指定的clsss所在栈顶部的中所有Activity
+     *
+     * @clsss : 指定的类
+     */
+    public void popTopActivitys(Class clsss) {
+        while (true) {
+            Activity activity = currentActivity();
+            if (activity == null) {
+                break;
+            }
+            if (activity.getClass().equals(clsss)) {
+                break;
+            }
+            popActivity(activity);
+        }
+    }
+
+    /**
+     * 弹出栈中所有Activity
+     */
+    public void popAllActivitys() {
+        while (true) {
+            Activity activity = currentActivity();
+            if (activity == null) {
+                break;
+            }
+            popActivity(activity);
+        }
+    }
 }

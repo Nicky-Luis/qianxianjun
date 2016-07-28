@@ -64,7 +64,7 @@ public class MainActivity extends BaseActivity {
      * 添加
      */
     private void startAdd() {
-        Intent intent = new Intent(MainActivity.this, AddPhotoActivity.class);
+        Intent intent = new Intent(MainActivity.this, AddPersonActivity.class);
         startActivity(intent);
     }
 

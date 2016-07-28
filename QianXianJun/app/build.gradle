@@ -33,6 +33,8 @@ dependencies {
     //compile files('libs/leakcanary.jar')
     //图片加载
     compile files('libs/picasso-2.4.0.jar')
+    //event bus
+    compile files('libs/eventbus-2.4.0.jar')
 
     //以下是最新的bmob-sdk:
     compile 'cn.bmob.android:bmob-sdk:3.4.7-aar'

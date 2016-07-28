@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#B3E5FC</color>
 
     <!-- 辅白色 -->
     <color name="main_white">#ffffff</color>
@@ -26,4 +26,5 @@
     <color name="main_deep_black">#4d4d4d</color>
     <!-- 主浅黑 -->
     <color name="main_light_black">#7c7c7c</color>
+
 </resources>

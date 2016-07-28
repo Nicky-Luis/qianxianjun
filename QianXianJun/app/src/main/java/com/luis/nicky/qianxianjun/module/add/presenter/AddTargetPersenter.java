@@ -59,7 +59,7 @@ public class AddTargetPersenter extends BasePresenter implements IAddTargetPrese
     private List<String> stringToList(String info) {
         List<String> infoList = new ArrayList<>();
 
-        String[] infoArray = info.split("、");
+        String[] infoArray = info.split(",");
         for (String msg : infoArray) {
             infoList.add(msg);
         }

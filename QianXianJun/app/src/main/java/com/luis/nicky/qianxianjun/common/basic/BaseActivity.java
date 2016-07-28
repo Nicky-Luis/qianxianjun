@@ -21,6 +21,7 @@ import com.luis.nicky.qianxianjun.common.manager.ActivityManager;
 import com.luis.nicky.qianxianjun.common.widget.CustomConfirmDialog;
 
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 public abstract class BaseActivity extends FragmentActivity implements IBaseView {
     private ProgressDialog mProgressDialog;
@@ -33,6 +34,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
         // 隐藏标题栏
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         ActivityManager.getInstence().pushActivity(this);
         int id = setLayoutId();
         View v = null;
@@ -45,8 +47,8 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
             v = LayoutInflater.from(this).inflate(setLayoutId(), null);
             setContentView(v);
             //检测是否有内存泄露
-           // RefWatcher refWatcher = CommonApp.getInstance().getRefWatcher(this);
-           // refWatcher.watch(this);
+            // RefWatcher refWatcher = CommonApp.getInstance().getRefWatcher(this);
+            // refWatcher.watch(this);
             // 初始化View注入
             ButterKnife.inject(this);
             loadLayout(v);
@@ -55,19 +57,22 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
         onInitialize();
     }
 
+
     /**
      * 重写方法设置layoutID
      *
      * @return
      */
     public abstract int setLayoutId();
+
     protected abstract void loadLayout(View v);
+
     protected abstract void onInitialize();
+
     public abstract void initPresenter();
 
     @Override
     public void finish() {
-
         super.finish();
     }
 
@@ -171,6 +176,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
     }
 
     //--------------------------Fragment相关--------------------------//
+
     /**
      * 获取Fragment管理器
      *

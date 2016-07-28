@@ -1,9 +1,11 @@
 package com.luis.nicky.qianxianjun.module.add;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.luis.nicky.qianxianjun.R;
 import com.luis.nicky.qianxianjun.collections.EducationType;
@@ -11,12 +13,14 @@ import com.luis.nicky.qianxianjun.collections.PersonBean;
 import com.luis.nicky.qianxianjun.collections.SexType;
 import com.luis.nicky.qianxianjun.common.basic.BaseActivity;
 import com.luis.nicky.qianxianjun.common.utils.ToastUtil;
+import com.luis.nicky.qianxianjun.common.widget.DialogUtil;
+import com.luis.nicky.qianxianjun.common.widget.TitleBar;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddResultCallBack;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddTargetPresenter;
 import com.luis.nicky.qianxianjun.module.add.presenter.AddTargetPersenter;
 
 import butterknife.InjectView;
-import butterknife.OnClick;
+import de.greenrobot.event.EventBus;
 
 public class AddTargetActivity extends BaseActivity {
 
@@ -53,29 +57,12 @@ public class AddTargetActivity extends BaseActivity {
     EditText userOthers;
     //用户ID
     private String personId;
-
+    //标头栏
+    @InjectView(R.id.title_bar)
+    TitleBar titleBar;
 
     //回调接口
     private IAddTargetPresenter addTargetPresenter;
-
-    @OnClick(value = {R.id.btn_back, R.id.btn_next})
-    public void onclick(View v) {
-        switch (v.getId()) {
-            //搜索
-            case R.id.btn_back:
-                finish();
-                break;
-
-            //添加
-            case R.id.btn_next:
-                startToAdd();
-                break;
-
-            default:
-                break;
-        }
-    }
-
 
     @Override
     public int setLayoutId() {
@@ -84,11 +71,26 @@ public class AddTargetActivity extends BaseActivity {
 
     @Override
     protected void loadLayout(View v) {
-
+        titleBar.setTitle("填写用户的要求");
+        //添加右侧按钮
+        TextView nextBtn = new TextView(this);
+        nextBtn.setTextSize(14);
+        nextBtn.setText("下一步");
+        nextBtn.setTextColor(ContextCompat.getColor(this, R.color.main_light_white));
+        titleBar.setRightView(nextBtn);
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startToAdd();
+            }
+        });
     }
 
     @Override
     protected void onInitialize() {
+        //注册EventBus
+        EventBus.getDefault().register(this);
+
         Intent intent = getIntent();
         personId = intent.getStringExtra(Intent_Key);
     }
@@ -96,6 +98,13 @@ public class AddTargetActivity extends BaseActivity {
     @Override
     public void initPresenter() {
         addTargetPresenter = new AddTargetPersenter(AddTargetActivity.this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //反注册EventBus
+        EventBus.getDefault().unregister(this);
     }
 
     /**
@@ -110,8 +119,8 @@ public class AddTargetActivity extends BaseActivity {
         bean.mUserWeibo = "";
         bean.mUserArea = userArea.getText().toString();
         bean.mUserBirthday = userBirthday.getText().toString();
-        bean.mUserHeight = Integer.valueOf(userHeight.getText().toString());
-        bean.mUserBodyWeight = Integer.valueOf(userWeight.getText().toString());
+        bean.mUserHeight = getEdtValue(userHeight);
+        bean.mUserBodyWeight = getEdtValue(userWeight);
         bean.mUserJob = userJob.getText().toString();
 
         //学历
@@ -143,19 +152,44 @@ public class AddTargetActivity extends BaseActivity {
         bean.mUserHobby = userInterest.getText().toString();
         bean.mUserDescription = userOthers.getText().toString();
 
+        if (!isDataComplete(bean)) {
+            return;
+        }
+
+        DialogUtil.instance().showLoadingDialog(AddTargetActivity.this, "开始上传");
         //开始添加
         addTargetPresenter.addNewTarget(bean, personId, new IAddResultCallBack() {
             @Override
             public void onSuccess(String personId) {
+                DialogUtil.dismissDialog();
                 ToastUtil.show(AddTargetActivity.this, "添加成功");
                 startToPhoto();
             }
 
             @Override
             public void onFailure(int code, String arg0) {
+                DialogUtil.dismissDialog();
                 ToastUtil.show(AddTargetActivity.this, "添加失败");
             }
         });
+    }
+
+    //获取控件的值
+    private int getEdtValue(EditText View) {
+        String heightVar = View.getText().toString();
+        if (heightVar == null || heightVar.equals("")) {
+            return 0;
+        }
+        return Integer.valueOf(heightVar);
+    }
+
+    //判断数据是否合法
+    private boolean isDataComplete(PersonBean bean) {
+        if (userHeight.getText().toString().equals("")) {
+            ToastUtil.show(this, "身高不能为空");
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -165,5 +199,10 @@ public class AddTargetActivity extends BaseActivity {
         Intent intent = new Intent(AddTargetActivity.this, AddPhotoActivity.class);
         intent.putExtra(AddPhotoActivity.Intent_Key, personId);
         startActivity(intent);
+    }
+
+    //结束
+    public void onEventMainThread(AddPhotoActivity.AddFinish msg) {
+        finish();
     }
 }

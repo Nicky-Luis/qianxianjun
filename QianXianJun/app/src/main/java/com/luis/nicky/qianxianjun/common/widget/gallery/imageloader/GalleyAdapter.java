@@ -55,10 +55,10 @@ public class GalleyAdapter extends CommonAdapter<String> {
 		
 		// 设置no_pic
 		helper.setImageResource(R.id.btn_galley_item_select,
-				R.drawable.pictures_no);
+				R.mipmap.pictures_no);
 		// 设置no_selected
 		helper.setImageResource(R.id.btn_galley_item_select,
-				R.drawable.picture_unselected);
+				R.mipmap.picture_unselected);
 		// 设置图片
 		helper.setImageByUrl(R.id.img_galley_item, mDirPath + "/" + item);
 
@@ -79,11 +79,11 @@ public class GalleyAdapter extends CommonAdapter<String> {
 				// 已经选择过该图片
 				if (mSelectedImage.contains(mDirPath + "/" + item)) {
 					mSelectedImage.remove(mDirPath + "/" + item);
-					mSelect.setImageResource(R.drawable.picture_unselected);
+					mSelect.setImageResource(R.mipmap.picture_unselected);
 					mImageView.setColorFilter(null);
 				} else if (mSelectedImage.size() + haveSelectCount < MAX_SELECT_COUNT) {
 					mSelectedImage.add(mDirPath + "/" + item);
-					mSelect.setImageResource(R.drawable.pictures_selected);
+					mSelect.setImageResource(R.mipmap.pictures_selected);
 					mImageView.setColorFilter(Color.parseColor("#77000000"));
 					//单张模式
 					if (MAX_SELECT_COUNT == 1) {
@@ -99,7 +99,7 @@ public class GalleyAdapter extends CommonAdapter<String> {
 						currentSelectImageView.setColorFilter(null);	
 						mSelectedImage.clear();
 						mSelectedImage.add(mDirPath + "/" + item);
-						mSelect.setImageResource(R.drawable.pictures_selected);
+						mSelect.setImageResource(R.mipmap.pictures_selected);
 						mSelect.setVisibility(View.VISIBLE);
 						mImageView.setColorFilter(Color.parseColor("#77000000"));
 						currentSelectImageView = mImageView;
@@ -115,7 +115,7 @@ public class GalleyAdapter extends CommonAdapter<String> {
 		 * 已经选择过的图片，显示出选择过的效果
 		 */
 		if (mSelectedImage.contains(mDirPath + "/" + item)) {
-			mSelect.setImageResource(R.drawable.pictures_selected);
+			mSelect.setImageResource(R.mipmap.pictures_selected);
 			mImageView.setColorFilter(Color.parseColor("#77000000"));
 		}
 

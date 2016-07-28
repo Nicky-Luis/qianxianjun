@@ -64,4 +64,15 @@ public class Logger {
             Log.e("Log-----error", msg);
         }
     }
+
+    /**
+     * 打印ver级别的log
+     *
+     * @param msg
+     */
+    public static void v(String msg) {
+        if (mDebug) {
+            Log.v("Log-----error", msg);
+        }
+    }
 }

@@ -1,15 +1,18 @@
 package com.luis.nicky.qianxianjun.common.app;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.DisplayMetrics;
 
+import com.luis.nicky.qianxianjun.common.manager.ActivityManager;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
 import java.util.Locale;
+import java.util.Stack;
 
 import cn.bmob.v3.Bmob;
 
@@ -40,7 +43,7 @@ public class CommonApp extends Application {
         super.onCreate();
         mInstance = this;
         //检测内存泄露
-       // LeakCanary.install(this);
+        // LeakCanary.install(this);
         initScreenSize();
         bombInit();
     }

@@ -7,39 +7,18 @@
     android:orientation="vertical"
     tools:context=".module.add.AddPhotoActivity">
 
-    <LinearLayout
+    <com.luis.nicky.qianxianjun.common.widget.TitleBar
+        android:id="@+id/title_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_blue_light"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="取消"/>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="添加信息"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
-
-        <Button
-            android:id="@+id/btn_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="保存"/>
-    </LinearLayout>
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/btn_add_photos"
         android:layout_width="200dp"
         android:layout_height="55dp"
-        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
         android:text="添加照片"/>
 
 </LinearLayout>

@@ -5,21 +5,23 @@
 
     <ImageView
         android:id="@+id/img_galley_item"
-        android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/pictures_no"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@mipmap/pictures_no"
         android:scaleType="centerCrop" />
 
     <ImageButton
         android:id="@+id/btn_galley_item_select"
         android:clickable="false"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="3dp"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true"
         android:layout_marginTop="3dp"
         android:background="@null"
-        android:src="@drawable/pictures_selected" />
+        android:src="@mipmap/pictures_selected" />
 
 </RelativeLayout>

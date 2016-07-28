@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/main_white"
+    android:background="@color/main_light_white"
     android:padding="2dp" >
 
     <ListView
         android:id="@+id/listview_galley_dir"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:divider="@color/main_white"
+        android:divider="@color/main_light_black"
         android:dividerHeight="1px"
         android:listSelector="@drawable/selector_deep_white_click" >
     </ListView>

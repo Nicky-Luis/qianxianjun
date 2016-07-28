@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.luis.nicky.qianxianjun.collections.BmobPhotoType;
 import com.luis.nicky.qianxianjun.common.basic.BasePresenter;
+import com.luis.nicky.qianxianjun.common.utils.Logger;
 import com.luis.nicky.qianxianjun.model.Photo;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddResultCallBack;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddPhotoPresenter;
@@ -40,7 +41,13 @@ public class AddPhotoPersenter extends BasePresenter implements IAddPhotoPresent
         this.currentPersonId = personId;
         this.resultCallBack = callBack;
 
-        final String[] filePaths = (String[]) photoList.toArray();
+        //将list转换为array
+        final int fileCount = photoList.size();
+        String[] filePaths = new String[fileCount];
+        for (int index = 0; index < fileCount; index++) {
+            filePaths[index] = photoList.get(index);
+        }
+
         BmobFile.uploadBatch(mContext, filePaths, new UploadBatchListener() {
 
             @Override
@@ -50,14 +57,14 @@ public class AddPhotoPersenter extends BasePresenter implements IAddPhotoPresent
                 //2、urls-上传文件的完整url地址
 
                 //如果数量相等，则代表文件全部上传完成
-                if (urls.size() == filePaths.length) {
+                if (urls.size() == fileCount) {
                     savePhotoInfo(urls);
                 }
             }
 
             @Override
             public void onError(int statuscode, String errormsg) {
-                //"错误码" + statuscode + ",错误描述：" + errormsg)
+                Logger.e("错误码:" + statuscode + ",错误描述：" + errormsg);
             }
 
             @Override
@@ -66,6 +73,7 @@ public class AddPhotoPersenter extends BasePresenter implements IAddPhotoPresent
                 //2、curPercent--表示当前上传文件的进度值（百分比）
                 //3、total--表示总的上传文件数
                 //4、totalPercent--表示总的上传进度（百分比）
+                Logger.v("curIndex = " + curIndex);
             }
         });
     }
