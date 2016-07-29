@@ -8,13 +8,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.luis.nicky.qianxianjun.R;
-import com.luis.nicky.qianxianjun.collections.EducationType;
-import com.luis.nicky.qianxianjun.collections.PersonBean;
-import com.luis.nicky.qianxianjun.collections.SexType;
-import com.luis.nicky.qianxianjun.common.basic.BaseActivity;
-import com.luis.nicky.qianxianjun.common.utils.ToastUtil;
-import com.luis.nicky.qianxianjun.common.widget.DialogUtil;
-import com.luis.nicky.qianxianjun.common.widget.TitleBar;
+import com.luis.nicky.qianxianjun.entry.EducationLevel;
+import com.luis.nicky.qianxianjun.helper.PersonNetBean;
+import com.luis.nicky.qianxianjun.entry.SexType;
+import com.luis.nicky.qianxianjun.base.basic.BaseActivity;
+import com.luis.nicky.qianxianjun.base.utils.ToastUtil;
+import com.luis.nicky.qianxianjun.base.view.DialogUtil;
+import com.luis.nicky.qianxianjun.base.view.TitleBar;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddResultCallBack;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddTargetPresenter;
 import com.luis.nicky.qianxianjun.module.add.presenter.AddTargetPersenter;
@@ -111,7 +111,7 @@ public class AddTargetActivity extends BaseActivity {
      * 开始添加
      */
     private void startToAdd() {
-        PersonBean bean = new PersonBean();
+        PersonNetBean bean = new PersonNetBean();
         bean.mUserSex = userSex.getCheckedRadioButtonId() == R.id.radioButton_man
                 ? SexType.Man : SexType.Female;
         bean.mUserPhone = "";
@@ -126,23 +126,23 @@ public class AddTargetActivity extends BaseActivity {
         //学历
         switch (userEducated.getCheckedRadioButtonId()) {
             case R.id.radioButton_master:
-                bean.mUserEducationLevel = EducationType.Master;
+                bean.mUserEducationLevel = EducationLevel.Master;
                 break;
 
             case R.id.radioButton_college:
-                bean.mUserEducationLevel = EducationType.College;
+                bean.mUserEducationLevel = EducationLevel.College;
                 break;
 
             case R.id.radioButton_specialty:
-                bean.mUserEducationLevel = EducationType.Specialty;
+                bean.mUserEducationLevel = EducationLevel.Specialty;
                 break;
 
             case R.id.radioButton_highery:
-                bean.mUserEducationLevel = EducationType.Highery;
+                bean.mUserEducationLevel = EducationLevel.Highery;
                 break;
 
             default:
-                bean.mUserEducationLevel = EducationType.Others;
+                bean.mUserEducationLevel = EducationLevel.Others;
                 break;
         }
 
@@ -184,7 +184,7 @@ public class AddTargetActivity extends BaseActivity {
     }
 
     //判断数据是否合法
-    private boolean isDataComplete(PersonBean bean) {
+    private boolean isDataComplete(PersonNetBean bean) {
         if (userHeight.getText().toString().equals("")) {
             ToastUtil.show(this, "身高不能为空");
             return false;

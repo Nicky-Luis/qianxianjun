@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".module.add.AddPhotoActivity">
 
-    <com.luis.nicky.qianxianjun.common.widget.TitleBar
+    <com.luis.nicky.qianxianjun.base.view.TitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

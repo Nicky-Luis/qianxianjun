@@ -1,6 +1,5 @@
 package com.luis.nicky.qianxianjun.module.add;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -8,23 +7,20 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.luis.nicky.qianxianjun.R;
-import com.luis.nicky.qianxianjun.common.basic.BaseActivity;
-import com.luis.nicky.qianxianjun.common.manager.ActivityManager;
-import com.luis.nicky.qianxianjun.common.utils.Logger;
-import com.luis.nicky.qianxianjun.common.utils.ToastUtil;
-import com.luis.nicky.qianxianjun.common.widget.DialogUtil;
-import com.luis.nicky.qianxianjun.common.widget.TitleBar;
-import com.luis.nicky.qianxianjun.common.widget.gallery.imageloader.GalleyActivity;
+import com.luis.nicky.qianxianjun.base.basic.BaseActivity;
+import com.luis.nicky.qianxianjun.base.utils.Logger;
+import com.luis.nicky.qianxianjun.base.utils.ToastUtil;
+import com.luis.nicky.qianxianjun.base.view.DialogUtil;
+import com.luis.nicky.qianxianjun.base.view.TitleBar;
+import com.luis.nicky.qianxianjun.base.view.gallery.GalleyActivity;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddResultCallBack;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddPhotoPresenter;
 import com.luis.nicky.qianxianjun.module.add.presenter.AddPhotoPersenter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 import butterknife.InjectView;
-import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 
 public class AddPhotoActivity extends BaseActivity {

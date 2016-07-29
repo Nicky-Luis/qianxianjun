@@ -4,7 +4,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <com.luis.nicky.qianxianjun.common.widget.TitleBar
+    <com.luis.nicky.qianxianjun.base.view.TitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

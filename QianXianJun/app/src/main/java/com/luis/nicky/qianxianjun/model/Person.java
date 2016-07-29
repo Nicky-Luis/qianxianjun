@@ -1,6 +1,6 @@
 package com.luis.nicky.qianxianjun.model;
 
-import com.luis.nicky.qianxianjun.collections.PersonBean;
+import com.luis.nicky.qianxianjun.helper.PersonNetBean;
 
 import java.util.List;
 
@@ -66,7 +66,7 @@ public class Person extends BmobObject {
     public Person() {
     }
 
-    public Person(PersonBean personBean) {
+    public Person(PersonNetBean personBean) {
         this.setName(personBean.mUserName);
         this.setmUserSex(personBean.mUserSex);
         this.setWechatId(personBean.mUserWechatId);

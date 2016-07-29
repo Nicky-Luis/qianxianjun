@@ -3,7 +3,7 @@ package com.luis.nicky.qianxianjun.module.welcom;
 import android.view.View;
 
 import com.luis.nicky.qianxianjun.R;
-import com.luis.nicky.qianxianjun.common.basic.BaseActivity;
+import com.luis.nicky.qianxianjun.base.basic.BaseActivity;
 
 public class PersonDetailActivity extends BaseActivity {
 

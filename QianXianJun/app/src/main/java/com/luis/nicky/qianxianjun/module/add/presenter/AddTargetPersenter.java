@@ -2,8 +2,8 @@ package com.luis.nicky.qianxianjun.module.add.presenter;
 
 import android.content.Context;
 
-import com.luis.nicky.qianxianjun.collections.PersonBean;
-import com.luis.nicky.qianxianjun.common.basic.BasePresenter;
+import com.luis.nicky.qianxianjun.helper.PersonNetBean;
+import com.luis.nicky.qianxianjun.base.basic.BasePresenter;
 import com.luis.nicky.qianxianjun.model.TargetPerson;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddResultCallBack;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddTargetPresenter;
@@ -29,7 +29,7 @@ public class AddTargetPersenter extends BasePresenter implements IAddTargetPrese
 
 
     @Override
-    public void addNewTarget(PersonBean targetBean, final String personId,
+    public void addNewTarget(PersonNetBean targetBean, final String personId,
                              final IAddResultCallBack callBack) {
         //目标用户信息
         final TargetPerson targetPerson = new TargetPerson(targetBean);

@@ -2,9 +2,9 @@ package com.luis.nicky.qianxianjun.module.add.presenter;
 
 import android.content.Context;
 
-import com.luis.nicky.qianxianjun.collections.BmobPhotoType;
-import com.luis.nicky.qianxianjun.common.basic.BasePresenter;
-import com.luis.nicky.qianxianjun.common.utils.Logger;
+import com.luis.nicky.qianxianjun.entry.BmobPhotoType;
+import com.luis.nicky.qianxianjun.base.basic.BasePresenter;
+import com.luis.nicky.qianxianjun.base.utils.Logger;
 import com.luis.nicky.qianxianjun.model.Photo;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddResultCallBack;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddPhotoPresenter;

@@ -8,21 +8,18 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.luis.nicky.qianxianjun.R;
-import com.luis.nicky.qianxianjun.collections.EducationType;
-import com.luis.nicky.qianxianjun.collections.PersonBean;
-import com.luis.nicky.qianxianjun.collections.SexType;
-import com.luis.nicky.qianxianjun.common.basic.BaseActivity;
-import com.luis.nicky.qianxianjun.common.basic.BaseActivityWithTitleBar;
-import com.luis.nicky.qianxianjun.common.utils.ToastUtil;
-import com.luis.nicky.qianxianjun.common.widget.DialogUtil;
-import com.luis.nicky.qianxianjun.common.widget.TitleBar;
-import com.luis.nicky.qianxianjun.common.widget.gallery.imageloader.GalleyActivity;
+import com.luis.nicky.qianxianjun.entry.EducationLevel;
+import com.luis.nicky.qianxianjun.helper.PersonNetBean;
+import com.luis.nicky.qianxianjun.entry.SexType;
+import com.luis.nicky.qianxianjun.base.basic.BaseActivityWithTitleBar;
+import com.luis.nicky.qianxianjun.base.utils.ToastUtil;
+import com.luis.nicky.qianxianjun.base.view.DialogUtil;
+import com.luis.nicky.qianxianjun.base.view.TitleBar;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddResultCallBack;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddPersonPresenter;
 import com.luis.nicky.qianxianjun.module.add.presenter.AddPersonPersenter;
 
 import butterknife.InjectView;
-import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 
 public class AddPersonActivity extends BaseActivityWithTitleBar {
@@ -125,7 +122,7 @@ public class AddPersonActivity extends BaseActivityWithTitleBar {
      * 开始添加
      */
     private void startToAdd() {
-        PersonBean bean = new PersonBean();
+        PersonNetBean bean = new PersonNetBean();
         bean.mUserName = username.getText().toString();
         bean.mUserWechatId = userWechat.getText().toString();
         int checkId = userSex.getCheckedRadioButtonId();
@@ -142,23 +139,23 @@ public class AddPersonActivity extends BaseActivityWithTitleBar {
         //学历
         switch (userEducated.getCheckedRadioButtonId()) {
             case R.id.radioButton_master:
-                bean.mUserEducationLevel = EducationType.Master;
+                bean.mUserEducationLevel = EducationLevel.Master;
                 break;
 
             case R.id.radioButton_college:
-                bean.mUserEducationLevel = EducationType.College;
+                bean.mUserEducationLevel = EducationLevel.College;
                 break;
 
             case R.id.radioButton_specialty:
-                bean.mUserEducationLevel = EducationType.Specialty;
+                bean.mUserEducationLevel = EducationLevel.Specialty;
                 break;
 
             case R.id.radioButton_highery:
-                bean.mUserEducationLevel = EducationType.Highery;
+                bean.mUserEducationLevel = EducationLevel.Highery;
                 break;
 
             default:
-                bean.mUserEducationLevel = EducationType.Others;
+                bean.mUserEducationLevel = EducationLevel.Others;
                 break;
         }
 
@@ -202,7 +199,7 @@ public class AddPersonActivity extends BaseActivityWithTitleBar {
     }
 
     //判断数据是否合法
-    private boolean isDataComplete(PersonBean bean) {
+    private boolean isDataComplete(PersonNetBean bean) {
         if (null == bean.mUserWechatId || bean.mUserWechatId.equals("")) {
             ToastUtil.show(this, "微信号不能为空");
             return false;

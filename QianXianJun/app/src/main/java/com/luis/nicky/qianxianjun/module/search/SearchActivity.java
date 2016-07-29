@@ -3,7 +3,7 @@ package com.luis.nicky.qianxianjun.module.search;
 import android.view.View;
 
 import com.luis.nicky.qianxianjun.R;
-import com.luis.nicky.qianxianjun.common.basic.BaseActivity;
+import com.luis.nicky.qianxianjun.base.basic.BaseActivity;
 
 import butterknife.OnClick;
 

@@ -3,10 +3,10 @@ package com.luis.nicky.qianxianjun.module.add.presenter;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 
-import com.luis.nicky.qianxianjun.common.basic.BasePresenter;
+import com.luis.nicky.qianxianjun.base.basic.BasePresenter;
 import com.luis.nicky.qianxianjun.model.Person;
-import com.luis.nicky.qianxianjun.collections.BmobDataType;
-import com.luis.nicky.qianxianjun.collections.PersonBean;
+import com.luis.nicky.qianxianjun.entry.BmobDataType;
+import com.luis.nicky.qianxianjun.helper.PersonNetBean;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddResultCallBack;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddPersonPresenter;
 
@@ -33,7 +33,7 @@ public class AddPersonPersenter extends BasePresenter implements IAddPersonPrese
     }
 
     @Override
-    public void addNewPerson(PersonBean personBean, IAddResultCallBack callBack) {
+    public void addNewPerson(PersonNetBean personBean, IAddResultCallBack callBack) {
         this.resultCallBack = callBack;
         //生成用户id
         this.currentPersonId = getUUID(BmobDataType.PERSON);

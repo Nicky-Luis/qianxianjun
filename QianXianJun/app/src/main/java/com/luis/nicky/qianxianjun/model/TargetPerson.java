@@ -1,6 +1,6 @@
 package com.luis.nicky.qianxianjun.model;
 
-import com.luis.nicky.qianxianjun.collections.PersonBean;
+import com.luis.nicky.qianxianjun.helper.PersonNetBean;
 
 import java.util.List;
 
@@ -54,7 +54,7 @@ public class TargetPerson extends BmobObject {
     public TargetPerson() {
     }
 
-    public TargetPerson(PersonBean personBean) {
+    public TargetPerson(PersonNetBean personBean) {
         this.setmSex(personBean.mUserSex);
         this.setArea(personBean.mUserArea);
         this.setBirthday(personBean.mUserBirthday);

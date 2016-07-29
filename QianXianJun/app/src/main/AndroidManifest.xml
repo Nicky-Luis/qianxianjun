@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.luis.nicky.qianxianjun"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest
+    package="com.luis.nicky.qianxianjun"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- 允许联网 -->
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -16,13 +17,16 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
-        android:name=".common.app.CommonApp"
+        android:name=".base.app.CommonApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".module.welcom.LoadingActivity">
+        <activity
+            android:name=".module.welcom.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -41,7 +45,7 @@
         </activity>
         <activity android:name=".module.add.AddPhotoActivity">
         </activity>
-        <activity android:name="com.luis.nicky.qianxianjun.common.widget.gallery.imageloader.GalleyActivity" />
+        <activity android:name=".base.view.gallery.GalleyActivity"/>
     </application>
 
 </manifest>

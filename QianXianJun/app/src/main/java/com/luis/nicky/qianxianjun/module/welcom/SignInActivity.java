@@ -7,8 +7,8 @@ import android.widget.EditText;
 
 import com.luis.nicky.qianxianjun.MainActivity;
 import com.luis.nicky.qianxianjun.R;
-import com.luis.nicky.qianxianjun.common.basic.BaseActivity;
-import com.luis.nicky.qianxianjun.common.utils.ToastUtil;
+import com.luis.nicky.qianxianjun.base.basic.BaseActivity;
+import com.luis.nicky.qianxianjun.base.utils.ToastUtil;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
