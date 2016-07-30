@@ -10,7 +10,6 @@ import com.luis.nicky.qianxianjun.model.Photo;
 import com.luis.nicky.qianxianjun.model.TargetPerson;
 import com.luis.nicky.qianxianjun.module.main.interfaces.IMainPresenter;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,8 +34,6 @@ public class MainPresenter implements IMainPresenter {
     private int limit = 10;
     // 当前页的编号，从0开始
     private int curPage = 0;
-    //分页查询的时候最后一条数据
-    private String lastTime;
     //用户的数据
     private List<PersonItemBean> personDatas;
     //是否是第一次查询
@@ -82,18 +79,9 @@ public class MainPresenter implements IMainPresenter {
         query.order("-createdAt");
         // 如果是加载更多
         if (actionType == STATE_MORE) {
-            // 处理时间查询
-            Date date = null;
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            try {
-                date = sdf.parse(lastTime);
-            } catch (java.text.ParseException e) {
-                e.printStackTrace();
-            }
-            // 只查询小于等于最后一个item发表时间的数据
-            query.addWhereLessThanOrEqualTo("createdAt", new BmobDate(date));
-            // 跳过之前页数并去掉重复数据
-            query.setSkip(page * limit + 1);
+            // 查询小于当前时间的
+            query.addWhereLessThanOrEqualTo("createdAt", new BmobDate(new Date()));
+            query.setSkip(curPage * limit);
         } else {
             curPage = 0;
             query.setSkip(page);
@@ -106,10 +94,7 @@ public class MainPresenter implements IMainPresenter {
             public void onSuccess(List<Person> list) {
                 if (list.size() > 0) {
                     if (actionType == STATE_REFRESH) {
-                        // 当是下拉刷新操作时，将当前页的编号重置为0，并把数据清空，重新添加
                         curPage = 0;
-                        // 获取最后时间
-                        lastTime = list.get(list.size() - 1).getCreatedAt();
                     }
                     personDatas.clear();
                     // 将本次查询的数据添加到数据中

@@ -61,9 +61,6 @@ public class MainActivity extends BaseActivity implements IMainView {
 
     @Override
     protected void loadLayout(View v) {
-        //设置第一页的索引为0
-        // swipeLayout.setFirstIndex(0);
-        // swipeLayout.setOnRefreshListener(listener);
     }
 
     @Override
@@ -73,6 +70,7 @@ public class MainActivity extends BaseActivity implements IMainView {
         mainPresenter.refreshData(true, new MainPresenter.ResultCallback() {
             @Override
             public void onSucceed(List<PersonItemBean> result) {
+                personListView.onRefreshComplete();
                 adapter.clear();
                 adapter.replaceAll(result);
             }
@@ -134,6 +132,7 @@ public class MainActivity extends BaseActivity implements IMainView {
                 mainPresenter.refreshData(false, new MainPresenter.ResultCallback() {
                     @Override
                     public void onSucceed(List<PersonItemBean> result) {
+                        personListView.onRefreshComplete();
                         adapter.clear();
                         adapter.replaceAll(result);
                     }
@@ -148,9 +147,10 @@ public class MainActivity extends BaseActivity implements IMainView {
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> pullToRefreshBase) {
                 //下拉
-                mainPresenter.refreshData(false, new MainPresenter.ResultCallback() {
+                mainPresenter.addMoreData(new MainPresenter.ResultCallback() {
                     @Override
                     public void onSucceed(List<PersonItemBean> result) {
+                        personListView.onRefreshComplete();
                         adapter.addAll(result);
                     }
 
