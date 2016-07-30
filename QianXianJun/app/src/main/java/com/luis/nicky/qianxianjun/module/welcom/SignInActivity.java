@@ -71,7 +71,7 @@ public class SignInActivity extends BaseActivity {
             startActivity(intent);
             finish();
         } else {
-            ToastUtil.show(SignInActivity.this, "用户名或密码错误");
+            ToastUtil.show("用户名或密码错误");
         }
     }
 }

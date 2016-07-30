@@ -215,7 +215,7 @@ public class GalleyActivity extends BaseActivityWithTitleBar implements
     private void getImages() {
         if (!Environment.getExternalStorageState().equals(
                 Environment.MEDIA_MOUNTED)) {
-            ToastUtil.show(this, "没有图片");
+            ToastUtil.show( "没有图片");
             return;
         }
 
@@ -342,7 +342,7 @@ public class GalleyActivity extends BaseActivityWithTitleBar implements
                         EventBus.getDefault().post(new PhotoFiles(list));
                         finish();
                     } else {
-                        ToastUtil.show(GalleyActivity.this, "请至少选择一张照片");
+                        ToastUtil.show( "请至少选择一张照片");
                     }
                 }
             }

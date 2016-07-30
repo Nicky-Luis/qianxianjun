@@ -1,11 +1,15 @@
 package com.luis.nicky.qianxianjun.helper;
 
 
+import android.content.Context;
+
+import com.luis.nicky.qianxianjun.base.basic.BaseModel;
+
 /**
  * Created by Nicky on 2016/7/26.
  * 用户网络操作相关的bean
  */
-public class PersonNetBean {
+public class PersonNetBean  extends BaseModel {
     public String mUserName;
     //微信号
     public String mUserWechatId;
@@ -39,4 +43,9 @@ public class PersonNetBean {
     public String mUserHobby;
     //其他描述
     public String mUserDescription;
+
+    public PersonNetBean(Context context) {
+        super(context);
+    }
+
 }

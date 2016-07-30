@@ -15,7 +15,4 @@ public interface BaseResponse {
     ////////////////////////回调函数/////////////////////////////
     //失败，返回失败码
     void onFailed(int code);
-
-    //成功
-    void onSucceed(BaseModel result);
 }

@@ -2,6 +2,7 @@ package com.luis.nicky.qianxianjun.module.add;
 
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -111,7 +112,7 @@ public class AddTargetActivity extends BaseActivity {
      * 开始添加
      */
     private void startToAdd() {
-        PersonNetBean bean = new PersonNetBean();
+        PersonNetBean bean = new PersonNetBean(this);
         bean.mUserSex = userSex.getCheckedRadioButtonId() == R.id.radioButton_man
                 ? SexType.Man : SexType.Female;
         bean.mUserPhone = "";
@@ -162,14 +163,14 @@ public class AddTargetActivity extends BaseActivity {
             @Override
             public void onSuccess(String personId) {
                 DialogUtil.dismissDialog();
-                ToastUtil.show(AddTargetActivity.this, "添加成功");
+                ToastUtil.show("添加成功");
                 startToPhoto();
             }
 
             @Override
             public void onFailure(int code, String arg0) {
                 DialogUtil.dismissDialog();
-                ToastUtil.show(AddTargetActivity.this, "添加失败");
+                ToastUtil.show( "添加失败");
             }
         });
     }
@@ -177,7 +178,7 @@ public class AddTargetActivity extends BaseActivity {
     //获取控件的值
     private int getEdtValue(EditText View) {
         String heightVar = View.getText().toString();
-        if (heightVar == null || heightVar.equals("")) {
+        if (TextUtils.isEmpty(heightVar)) {
             return 0;
         }
         return Integer.valueOf(heightVar);
@@ -185,8 +186,8 @@ public class AddTargetActivity extends BaseActivity {
 
     //判断数据是否合法
     private boolean isDataComplete(PersonNetBean bean) {
-        if (userHeight.getText().toString().equals("")) {
-            ToastUtil.show(this, "身高不能为空");
+        if (TextUtils.isEmpty(userHeight.getText().toString())) {
+            ToastUtil.show( "身高不能为空");
             return false;
         }
         return true;

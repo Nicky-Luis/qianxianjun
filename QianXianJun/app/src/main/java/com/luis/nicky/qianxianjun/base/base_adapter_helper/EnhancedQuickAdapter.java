@@ -10,12 +10,12 @@ import java.util.List;
  * adapting the new view to the same item or not, and therefore
  * make a difference between dataset changed / dataset invalidated.
  * <p/>
- * Abstraction class of a BaseAdapter in which you only need
+ * Abstraction class of a BaseQuickAdapter in which you only need
  * to provide the convert() implementation.<br/>
  * Using the provided BaseAdapterHelper, your code is minimalist.
  * @param <T> The type of the items in the list.
  */
-public abstract class EnhancedQuickAdapter<T> extends BaseAdapter<T> {
+public abstract class EnhancedQuickAdapter<T> extends QuickAdapter<T> {
 
     /**
      * Create a QuickAdapter.

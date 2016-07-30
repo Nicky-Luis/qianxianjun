@@ -5,6 +5,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.DisplayMetrics;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import java.util.Locale;
 
 import cn.bmob.v3.Bmob;
@@ -39,6 +41,7 @@ public class CommonApp extends Application {
         // LeakCanary.install(this);
         initScreenSize();
         bombInit();
+        Fresco.initialize(this);
     }
 
     ///////////////////////////////////////////////////////////

@@ -112,7 +112,7 @@ public class AddPhotoActivity extends BaseActivity {
     //保存照片信息
     private void startSaveInfo() {
         if (currentPhotos.size() <= 0) {
-            ToastUtil.show(AddPhotoActivity.this, "照片为空");
+            ToastUtil.show( "照片为空");
             return;
         }
 
@@ -121,7 +121,7 @@ public class AddPhotoActivity extends BaseActivity {
             @Override
             public void onSuccess(String msg) {
                 DialogUtil.dismissDialog();
-                ToastUtil.show(AddPhotoActivity.this, "照片上传成功");
+                ToastUtil.show( "照片上传成功");
 
                 //通过event bus 关闭前两个activity
                 EventBus.getDefault().post(new AddFinish());
@@ -131,7 +131,7 @@ public class AddPhotoActivity extends BaseActivity {
             @Override
             public void onFailure(int code, String arg0) {
                 DialogUtil.dismissDialog();
-                ToastUtil.show(AddPhotoActivity.this, "照片上传失败");
+                ToastUtil.show( "照片上传失败");
             }
         });
     }

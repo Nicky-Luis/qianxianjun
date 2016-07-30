@@ -5,30 +5,36 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ListView;
 
-import com.luis.nicky.qianxianjun.entry.SexType;
-import com.luis.nicky.qianxianjun.helper.PersonItemBean;
-import com.luis.nicky.qianxianjun.helper.PersonNetBean;
-import com.luis.nicky.qianxianjun.base.base_adapter_helper.BaseAdapter;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.luis.nicky.qianxianjun.base.base_adapter_helper.BaseAdapterHelper;
-import com.luis.nicky.qianxianjun.module.add.AddPersonActivity;
+import com.luis.nicky.qianxianjun.base.base_adapter_helper.QuickAdapter;
 import com.luis.nicky.qianxianjun.base.basic.BaseActivity;
 import com.luis.nicky.qianxianjun.base.utils.ToastUtil;
+import com.luis.nicky.qianxianjun.entry.SexType;
+import com.luis.nicky.qianxianjun.helper.PersonItemBean;
+import com.luis.nicky.qianxianjun.module.add.AddPersonActivity;
+import com.luis.nicky.qianxianjun.module.main.interfaces.IMainPresenter;
+import com.luis.nicky.qianxianjun.module.main.interfaces.IMainView;
+import com.luis.nicky.qianxianjun.module.main.presenter.MainPresenter;
 import com.luis.nicky.qianxianjun.module.search.SearchActivity;
 
-
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements IMainView {
 
-    @InjectView(R.id.listview_main_data)
-    ListView mainListView;
+    // 动态listview
+    @InjectView(R.id.person_listview)
+    PullToRefreshListView personListView;
     //adapter
-    private BaseAdapter<PersonItemBean> adapter;
-    //数据集
-    private List<PersonItemBean> listDatas;
+    private QuickAdapter<PersonItemBean> adapter;
+    //presenter 对象
+    private IMainPresenter mainPresenter;
+
 
     @OnClick(value = {R.id.btn_search, R.id.btn_add_person})
     public void onclick(View v) {
@@ -55,17 +61,32 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void loadLayout(View v) {
-
+        //设置第一页的索引为0
+        // swipeLayout.setFirstIndex(0);
+        // swipeLayout.setOnRefreshListener(listener);
     }
 
     @Override
     protected void onInitialize() {
+        lisviewSet();
+        //第一次加载
+        mainPresenter.refreshData(true, new MainPresenter.ResultCallback() {
+            @Override
+            public void onSucceed(List<PersonItemBean> result) {
+                adapter.clear();
+                adapter.replaceAll(result);
+            }
 
+            @Override
+            public void onFailed(int code) {
+                personListView.onRefreshComplete();
+            }
+        });
     }
 
     @Override
     public void initPresenter() {
-
+        mainPresenter = new MainPresenter(MainActivity.this);
     }
 
     /**
@@ -74,17 +95,18 @@ public class MainActivity extends BaseActivity {
     private void lisviewSet() {
 
         //初始化
-        adapter = new BaseAdapter<PersonItemBean>(MainActivity.this,
-                R.layout.item_main_person, listDatas) {
+        adapter = new QuickAdapter<PersonItemBean>(MainActivity.this, R.layout.item_main_person,
+                new ArrayList<PersonItemBean>()) {
 
             @Override
             protected void convert(BaseAdapterHelper helper, PersonItemBean item) {
                 //绑定数据
-                helper.setImageUrl(R.id.img_person_head, item.personHeadUrl);
-                helper.setText(R.id.txt_person_age, item.personAge + "岁");
-                helper.setText(R.id.txt_person_area, item.personArea);
-                helper.setText(R.id.txt_person_target, item.personTarget);
-                helper.setImageResource(R.id.img_person_sex, SexType.getSexRes(item.personSex));
+
+                helper.setImageUrl(R.id.img_person_head, item.personHeadUrl)
+                        .setText(R.id.txt_person_age, item.personAge + "岁")
+                        .setText(R.id.txt_person_area, item.personArea)
+                        .setText(R.id.txt_person_target, item.personTarget)
+                        .setImageResource(R.id.img_person_sex, SexType.getSexRes(item.personSex));
 
                 //绑定事件
                 View.OnClickListener listener = new View.OnClickListener() {
@@ -101,8 +123,44 @@ public class MainActivity extends BaseActivity {
 
         // 设置不可点击
         adapter.setItemsClickEnable(false);
+        // 设置刷新模式
+        personListView.setMode(PullToRefreshBase.Mode.BOTH);
         //绑定adpter
-        mainListView.setAdapter(adapter);
+        personListView.setAdapter(adapter);
+        personListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> pullToRefreshBase) {
+                //下拉
+                mainPresenter.refreshData(false, new MainPresenter.ResultCallback() {
+                    @Override
+                    public void onSucceed(List<PersonItemBean> result) {
+                        adapter.clear();
+                        adapter.replaceAll(result);
+                    }
+
+                    @Override
+                    public void onFailed(int code) {
+                        personListView.onRefreshComplete();
+                    }
+                });
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> pullToRefreshBase) {
+                //下拉
+                mainPresenter.refreshData(false, new MainPresenter.ResultCallback() {
+                    @Override
+                    public void onSucceed(List<PersonItemBean> result) {
+                        adapter.addAll(result);
+                    }
+
+                    @Override
+                    public void onFailed(int code) {
+                        personListView.onRefreshComplete();
+                    }
+                });
+            }
+        });
     }
 
     /***
@@ -127,7 +185,7 @@ public class MainActivity extends BaseActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if ((System.currentTimeMillis() - mExitTime) > 2000) {
-                ToastUtil.show(this, "再按一次退出程序");
+                ToastUtil.show("再按一次退出程序");
                 mExitTime = System.currentTimeMillis();
             } else {
                 finish();
@@ -136,4 +194,6 @@ public class MainActivity extends BaseActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    //////////////////////////////////////////////////////
 }

@@ -1,57 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              android:id="@+id/layout_person_item_root"
-              android:padding="5dp">
+<RelativeLayout
+    android:id="@+id/layout_person_item_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@color/main_white"
+    android:orientation="horizontal">
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/img_person_head"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_gravity="center_vertical"
-        android:layout_margin="10dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher"/>
+        android:layout_margin="5dp"
+        fresco:actualImageScaleType="focusCrop"
+        fresco:failureImage="@mipmap/ic_launcher"
+        fresco:placeholderImage="@color/main_light_white"/>
 
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txt_person_age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="32岁"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+    <TextView
+        android:id="@+id/txt_person_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/img_person_head"
+        android:text="32岁"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
-        <TextView
-            android:id="@+id/txt_person_area"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/txt_person_age"
-            android:text="深圳"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+    <TextView
+        android:id="@+id/txt_person_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_alignTop="@+id/txt_person_age"
+        android:layout_toRightOf="@id/txt_person_age"
+        android:text="深圳"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
-        <TextView
-            android:id="@+id/txt_person_target"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_person_age"
-            android:layout_marginTop="5dp"
-            android:text="希望找一个善良漂亮美丽大方"
-            android:textAppearance="?android:attr/textAppearanceSmall"/>
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/txt_person_target"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txt_person_age"
+        android:layout_below="@+id/txt_person_age"
+        android:layout_marginTop="10dp"
+        android:text="希望找一个善良漂亮美丽大方"
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
 
     <ImageView
         android:id="@+id/img_person_sex"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:layout_margin="10dp"
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher"/>
-</LinearLayout>
+</RelativeLayout>

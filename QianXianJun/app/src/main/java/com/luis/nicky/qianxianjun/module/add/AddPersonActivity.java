@@ -2,6 +2,7 @@ package com.luis.nicky.qianxianjun.module.add;
 
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -122,7 +123,7 @@ public class AddPersonActivity extends BaseActivityWithTitleBar {
      * 开始添加
      */
     private void startToAdd() {
-        PersonNetBean bean = new PersonNetBean();
+        PersonNetBean bean = new PersonNetBean(this);
         bean.mUserName = username.getText().toString();
         bean.mUserWechatId = userWechat.getText().toString();
         int checkId = userSex.getCheckedRadioButtonId();
@@ -177,13 +178,13 @@ public class AddPersonActivity extends BaseActivityWithTitleBar {
             public void onSuccess(String personId) {
                 DialogUtil.dismissDialog();
                 startToTarget(personId);
-                ToastUtil.show(AddPersonActivity.this, "添加成功");
+                ToastUtil.show("添加成功");
             }
 
             @Override
             public void onFailure(int code, String arg0) {
                 DialogUtil.dismissDialog();
-                ToastUtil.show(AddPersonActivity.this, "添加失败");
+                ToastUtil.show("添加失败");
             }
         });
     }
@@ -192,7 +193,7 @@ public class AddPersonActivity extends BaseActivityWithTitleBar {
     //获取控件的值
     private int getEdtValue(EditText View) {
         String heightVar = View.getText().toString();
-        if (heightVar == null || heightVar.equals("")) {
+        if (TextUtils.isEmpty(heightVar)) {
             return 0;
         }
         return Integer.valueOf(heightVar);
@@ -201,7 +202,7 @@ public class AddPersonActivity extends BaseActivityWithTitleBar {
     //判断数据是否合法
     private boolean isDataComplete(PersonNetBean bean) {
         if (null == bean.mUserWechatId || bean.mUserWechatId.equals("")) {
-            ToastUtil.show(this, "微信号不能为空");
+            ToastUtil.show("微信号不能为空");
             return false;
         }
         return true;

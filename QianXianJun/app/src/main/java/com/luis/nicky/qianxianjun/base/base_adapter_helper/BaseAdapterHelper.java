@@ -1,12 +1,12 @@
 package com.luis.nicky.qianxianjun.base.base_adapter_helper;
 
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.text.util.Linkify;
 import android.util.SparseArray;
@@ -14,10 +14,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
-import android.widget.*;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.Checkable;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
-import com.luis.nicky.qianxianjun.R;
-import com.squareup.picasso.Picasso;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
 /**
  * Allows an abstraction of the ViewHolder pattern.<br>
@@ -224,22 +234,32 @@ public class BaseAdapterHelper {
      * @return The BaseAdapterHelper for chaining.
      */
     public BaseAdapterHelper setImageUrl(int viewId, String imageUrl) {
-        ImageView view = retrieveView(viewId);
-        //这里就是异步加载网络图片的地方,未加载完成或者加载发生错误的时
-        Picasso.with(context)
-                .load(imageUrl)
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.mipmap.ic_launcher)
-                .into(view);
+        Uri uri = Uri.parse(imageUrl);
+        SimpleDraweeView view = retrieveView(viewId);
+        /**
+         * 设置图片显示的品质，下载图片不受影响
+         */
+        int width = 60, height = 60;
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
+                .setResizeOptions(new ResizeOptions(width, height))
+                .build();
+
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setUri(uri)
+                .setImageRequest(request)
+                .setTapToRetryEnabled(true)
+
+                .setOldController(view.getController())
+                .build();
+
+        view.setController(controller);
         return this;
     }
 
     /**
      * Will download an image from a URL and put it in an ImageView.<br/>
      *
-     * @param viewId         The view id.
-     * @param requestBuilder The Picasso request builder. (e.g.
-     *                       Picasso.with(context).load(imageUrl))
+     * @param viewId The view id.
      * @return The BaseAdapterHelper for chaining.
      */
     public BaseAdapterHelper setImageBuilder(int viewId) {
