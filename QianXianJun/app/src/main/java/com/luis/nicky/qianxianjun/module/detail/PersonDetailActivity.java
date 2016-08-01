@@ -1,4 +1,4 @@
-package com.luis.nicky.qianxianjun.module.welcom;
+package com.luis.nicky.qianxianjun.module.detail;
 
 import android.view.View;
 

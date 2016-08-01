@@ -38,7 +38,7 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"/>
         <activity android:name=".module.add.AddPersonActivity"/>
-        <activity android:name=".module.welcom.PersonDetailActivity"/>
+        <activity android:name=".module.detail.PersonDetailActivity"/>
         <activity android:name=".module.add.AddTargetActivity">
         </activity>
         <activity android:name=".module.search.SearchActivity">

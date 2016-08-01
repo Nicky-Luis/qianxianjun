@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 'Google Inc.:Google APIs:23'
+    compileSdkVersion 23
     buildToolsVersion '23.0.1'
 
     defaultConfig {
@@ -16,6 +16,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -39,10 +43,7 @@ dependencies {
     //event bus
     compile files('libs/eventbus-2.4.0.jar')
     //下拉刷新
-    compile(name:'pulltorefresh', ext:'aar')
-
-
-
+    compile(name: 'pulltorefresh', ext: 'aar')
     //以下是最新的bmob-sdk:
     compile 'cn.bmob.android:bmob-sdk:3.4.7-aar'
     ///////////////////以下都是fresco///////////
