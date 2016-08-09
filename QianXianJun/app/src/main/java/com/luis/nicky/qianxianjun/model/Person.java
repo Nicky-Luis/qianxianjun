@@ -188,20 +188,20 @@ public class Person extends BmobObject {
         return mUserBirthday;
     }
 
-    public int getHeight() {
-        return mUserHeight;
+    public String getHeight() {
+        return mUserHeight+"";
     }
 
-    public int getBodyWeight() {
-        return mUserBodyWeight;
+    public String getBodyWeight() {
+        return mUserBodyWeight+"";
     }
 
     public String getJob() {
         return mUserJob;
     }
 
-    public int getEducationLevel() {
-        return mUserEducationLevel;
+    public String getEducationLevel() {
+        return mUserEducationLevel+"";
     }
 
     public String getUniversity() {

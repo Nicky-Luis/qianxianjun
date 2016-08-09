@@ -1,51 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".module.detail.PersonDetailActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
+    <data>
+        <variable
+            name="person"
+            type="com.luis.nicky.qianxianjun.model.Person"/>
+        <variable
+            name="target"
+            type="com.luis.nicky.qianxianjun.model.TargetPerson"/>
+
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".module.detail.PersonDetailActivity">
 
-        <LinearLayout
+        <com.luis.nicky.qianxianjun.base.view.TitleBar
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/main_light_white"
-            android:orientation="vertical">
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true">
 
-            <include
-                layout="@layout/container_person_basic_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <include
-                layout="@layout/container_person_other_info"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"/>
+                android:background="@color/main_light_white"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Ta的要求"
-                android:textAppearance="?android:attr/textAppearanceMedium"/>
+                <include
+                    layout="@layout/container_person_basic_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    bind:person="@{person}"/>
 
-            <include
-                layout="@layout/container_target_basic_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                <include
+                    layout="@layout/container_person_other_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    bind:person="@{person}"/>
 
-            <include
-                layout="@layout/container_target_other_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"/>
-        </LinearLayout>
-    </ScrollView>
-</RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Ta的要求"
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+                <include
+                    layout="@layout/container_target_basic_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    bind:target="@{target}"/>
+
+                <include
+                    layout="@layout/container_target_other_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    bind:target="@{target}"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -23,8 +25,9 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends FragmentActivity implements IBaseView {
     private ProgressDialog mProgressDialog;
-    FragmentManager fragmentManager;
-
+    protected FragmentManager fragmentManager;
+    protected ViewDataBinding viewDataBinding;
+    protected boolean dataBindingFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +41,16 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
         View v = null;
         if (0 == id) {
             new Exception(
-                    "Please return the layout id in setLayoutId method,as simple as R.layout.cr_news_fragment_layout")
+                    "Please return the layout id in setLayoutId method,as simple as R" +
+                            ".layout.cr_news_fragment_layout")
                     .printStackTrace();
+        } else if (dataBindingFlag) {
+            viewDataBinding = DataBindingUtil.setContentView(this, id);
+            loadLayout(viewDataBinding.getRoot());
         } else {
             // layout注入
             v = LayoutInflater.from(this).inflate(setLayoutId(), null);
             setContentView(v);
-            //检测是否有内存泄露
-            // RefWatcher refWatcher = CommonApp.getInstance().getRefWatcher(this);
-            // refWatcher.watch(this);
             // 初始化View注入
             ButterKnife.inject(this);
             loadLayout(v);
@@ -74,6 +78,10 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
         super.finish();
     }
 
+    public void setDataBindingFlag(boolean flag) {
+        this.dataBindingFlag = flag;
+    }
+
     /**
      * 显示单选对话框
      *
@@ -83,7 +91,9 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
      * @param checkedItem     默认选中
      * @param onClickListener 点击事件的监听
      */
-    public void showRadioButtonDialog(String title, String message, String[] strings, int checkedItem, DialogInterface.OnClickListener onClickListener) {
+    public void showRadioButtonDialog(String title, String message, String[] strings,
+                                      int checkedItem, DialogInterface.OnClickListener
+                                              onClickListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
         if (!TextUtils.isEmpty(message)) {
@@ -101,7 +111,8 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
      * @param strings         选项数组
      * @param onClickListener 点击事件的监听
      */
-    public void showRadioButtonDialog(String title, String[] strings, DialogInterface.OnClickListener onClickListener) {
+    public void showRadioButtonDialog(String title, String[] strings, DialogInterface
+            .OnClickListener onClickListener) {
         showRadioButtonDialog(title, null, strings, 0, onClickListener);
     }
 
@@ -109,7 +120,8 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
      * 弹出自定义对话框
      */
     public void showConfirmDialog(String title, View.OnClickListener positiveListener) {
-        CustomConfirmDialog confirmDialog = new CustomConfirmDialog(this, title, positiveListener);
+        CustomConfirmDialog confirmDialog = new CustomConfirmDialog(this, title,
+                positiveListener);
         confirmDialog.show();
     }
 
@@ -213,7 +225,8 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
      * @param fragment
      * @param isAddToBackStack
      */
-    public void replaceFragment(int res, BaseFragment fragment, boolean isAddToBackStack) {
+    public void replaceFragment(int res, BaseFragment fragment, boolean
+            isAddToBackStack) {
         FragmentTransaction fragmentTransaction = getFragmentTransaction();
         fragmentTransaction.replace(res, fragment);
         if (isAddToBackStack) {
