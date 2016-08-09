@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    package="com.luis.nicky.qianxianjun"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest package="com.luis.nicky.qianxianjun"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
 
     <!-- 允许联网 -->
     <uses-permission android:name="android.permission.INTERNET"/>

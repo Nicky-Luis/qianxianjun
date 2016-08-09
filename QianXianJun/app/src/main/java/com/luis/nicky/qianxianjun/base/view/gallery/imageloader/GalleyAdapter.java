@@ -1,8 +1,5 @@
 package com.luis.nicky.qianxianjun.base.view.gallery.imageloader;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
@@ -12,6 +9,9 @@ import android.widget.ImageView;
 import com.luis.nicky.qianxianjun.R;
 import com.luis.nicky.qianxianjun.base.view.gallery.utils.CommonAdapter;
 import com.luis.nicky.qianxianjun.base.view.gallery.utils.ViewHolder;
+
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class GalleyAdapter extends CommonAdapter<String> {

@@ -2,7 +2,6 @@ package com.luis.nicky.qianxianjun.base.app;
 
 import android.annotation.SuppressLint;
 
-
 import com.luis.nicky.qianxianjun.base.utils.SdCardUtil;
 
 import java.text.SimpleDateFormat;

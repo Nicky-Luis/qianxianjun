@@ -13,8 +13,8 @@ import com.luis.nicky.qianxianjun.base.utils.ToastUtil;
 import com.luis.nicky.qianxianjun.base.view.DialogUtil;
 import com.luis.nicky.qianxianjun.base.view.TitleBar;
 import com.luis.nicky.qianxianjun.base.view.gallery.GalleyActivity;
-import com.luis.nicky.qianxianjun.module.add.interfaces.IAddResultCallBack;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddPhotoPresenter;
+import com.luis.nicky.qianxianjun.module.add.interfaces.IAddResultCallBack;
 import com.luis.nicky.qianxianjun.module.add.presenter.AddPhotoPersenter;
 
 import java.util.ArrayList;
@@ -116,7 +116,7 @@ public class AddPhotoActivity extends BaseActivity {
             return;
         }
 
-        DialogUtil.instance().showLoadingDialog(AddPhotoActivity.this, "照片上传中");
+        DialogUtil.instance().showLoadingDialog( "照片上传中");
         addPhotoPresenter.addNewPotos(currentPhotos, personId, new IAddResultCallBack() {
             @Override
             public void onSuccess(String msg) {

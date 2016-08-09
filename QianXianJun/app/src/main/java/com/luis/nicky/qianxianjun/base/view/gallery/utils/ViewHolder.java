@@ -36,7 +36,7 @@ public class ViewHolder {
 	 * @return
 	 */
 	public static ViewHolder get(Context context, View convertView,
-			ViewGroup parent, int layoutId, int position) {
+								 ViewGroup parent, int layoutId, int position) {
 		ViewHolder holder = null;
 		if (convertView == null) {
 			holder = new ViewHolder(context, parent, layoutId, position);

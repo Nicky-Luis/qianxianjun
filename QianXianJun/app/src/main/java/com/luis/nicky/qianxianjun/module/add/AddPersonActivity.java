@@ -9,15 +9,15 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.luis.nicky.qianxianjun.R;
-import com.luis.nicky.qianxianjun.entry.EducationLevel;
-import com.luis.nicky.qianxianjun.helper.PersonNetBean;
-import com.luis.nicky.qianxianjun.entry.SexType;
 import com.luis.nicky.qianxianjun.base.basic.BaseActivityWithTitleBar;
 import com.luis.nicky.qianxianjun.base.utils.ToastUtil;
 import com.luis.nicky.qianxianjun.base.view.DialogUtil;
 import com.luis.nicky.qianxianjun.base.view.TitleBar;
-import com.luis.nicky.qianxianjun.module.add.interfaces.IAddResultCallBack;
+import com.luis.nicky.qianxianjun.entry.EducationLevel;
+import com.luis.nicky.qianxianjun.entry.SexType;
+import com.luis.nicky.qianxianjun.helper.PersonNetBean;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddPersonPresenter;
+import com.luis.nicky.qianxianjun.module.add.interfaces.IAddResultCallBack;
 import com.luis.nicky.qianxianjun.module.add.presenter.AddPersonPersenter;
 
 import butterknife.InjectView;
@@ -171,7 +171,7 @@ public class AddPersonActivity extends BaseActivityWithTitleBar {
             return;
         }
 
-        DialogUtil.instance().showLoadingDialog(AddPersonActivity.this, "开始上传");
+        DialogUtil.instance().showLoadingDialog( "开始上传");
         //开始添加
         addPersonPresenter.addNewPerson(bean, new IAddResultCallBack() {
             @Override

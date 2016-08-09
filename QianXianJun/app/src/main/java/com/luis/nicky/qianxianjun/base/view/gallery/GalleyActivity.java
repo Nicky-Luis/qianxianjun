@@ -1,13 +1,5 @@
 package com.luis.nicky.qianxianjun.base.view.gallery;
 
-import java.io.File;
-import java.io.FilenameFilter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
@@ -37,6 +29,14 @@ import com.luis.nicky.qianxianjun.base.view.TitleBar;
 import com.luis.nicky.qianxianjun.base.view.gallery.bean.ImageFloder;
 import com.luis.nicky.qianxianjun.base.view.gallery.imageloader.GalleyAdapter;
 import com.luis.nicky.qianxianjun.base.view.gallery.imageloader.ListImageDirPopupWindow;
+
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 
 import butterknife.InjectView;
 import de.greenrobot.event.EventBus;

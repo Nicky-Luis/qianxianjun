@@ -2,8 +2,8 @@ package com.luis.nicky.qianxianjun.module.add.presenter;
 
 import android.content.Context;
 
-import com.luis.nicky.qianxianjun.helper.PersonNetBean;
 import com.luis.nicky.qianxianjun.base.basic.BasePresenter;
+import com.luis.nicky.qianxianjun.helper.PersonNetBean;
 import com.luis.nicky.qianxianjun.model.TargetPerson;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddResultCallBack;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddTargetPresenter;

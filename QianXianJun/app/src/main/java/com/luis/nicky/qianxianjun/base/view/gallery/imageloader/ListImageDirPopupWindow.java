@@ -1,7 +1,5 @@
 package com.luis.nicky.qianxianjun.base.view.gallery.imageloader;
 
-import java.util.List;
-
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -12,6 +10,8 @@ import com.luis.nicky.qianxianjun.base.view.gallery.bean.ImageFloder;
 import com.luis.nicky.qianxianjun.base.view.gallery.utils.BasePopupWindowForListView;
 import com.luis.nicky.qianxianjun.base.view.gallery.utils.CommonAdapter;
 import com.luis.nicky.qianxianjun.base.view.gallery.utils.ViewHolder;
+
+import java.util.List;
 
 
 public class ListImageDirPopupWindow extends

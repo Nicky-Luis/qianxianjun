@@ -4,11 +4,11 @@ import android.content.Context;
 import android.telephony.TelephonyManager;
 
 import com.luis.nicky.qianxianjun.base.basic.BasePresenter;
-import com.luis.nicky.qianxianjun.model.Person;
 import com.luis.nicky.qianxianjun.entry.BmobDataType;
 import com.luis.nicky.qianxianjun.helper.PersonNetBean;
-import com.luis.nicky.qianxianjun.module.add.interfaces.IAddResultCallBack;
+import com.luis.nicky.qianxianjun.model.Person;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddPersonPresenter;
+import com.luis.nicky.qianxianjun.module.add.interfaces.IAddResultCallBack;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.luis.nicky.qianxianjun.R;
+import com.luis.nicky.qianxianjun.base.manager.ActivityManager;
 
 
 public class DialogUtil {
@@ -31,10 +32,9 @@ public class DialogUtil {
 
     /**
      * 等待对话框
-     *
-     * @param context
      */
-    public void showLoadingDialog(Context context, int content) {
+    public void showLoadingDialog(int content) {
+        Context context = ActivityManager.getAppManager().currentActivity();
         dismissDialog();
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         RelativeLayout relativeLayout = (RelativeLayout) layoutInflater
@@ -112,7 +112,8 @@ public class DialogUtil {
 
     }
 
-    public void showLoadingDialog(Context context, String content) {
+    public void showLoadingDialog(String content) {
+        Context context = ActivityManager.getAppManager().currentActivity();
         dismissDialog();
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         RelativeLayout relativeLayout = (RelativeLayout) layoutInflater

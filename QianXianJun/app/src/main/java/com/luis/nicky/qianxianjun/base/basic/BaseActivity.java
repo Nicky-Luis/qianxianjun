@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
-
 import com.luis.nicky.qianxianjun.base.manager.ActivityManager;
 import com.luis.nicky.qianxianjun.base.view.CustomConfirmDialog;
 

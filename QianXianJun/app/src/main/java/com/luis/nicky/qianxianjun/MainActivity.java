@@ -14,6 +14,7 @@ import com.luis.nicky.qianxianjun.base.utils.ToastUtil;
 import com.luis.nicky.qianxianjun.entry.SexType;
 import com.luis.nicky.qianxianjun.helper.PersonItemBean;
 import com.luis.nicky.qianxianjun.module.add.AddPersonActivity;
+import com.luis.nicky.qianxianjun.module.detail.PersonDetailActivity;
 import com.luis.nicky.qianxianjun.module.main.interfaces.IMainPresenter;
 import com.luis.nicky.qianxianjun.module.main.interfaces.IMainView;
 import com.luis.nicky.qianxianjun.module.main.presenter.MainPresenter;
@@ -106,13 +107,15 @@ public class MainActivity extends BaseActivity implements IMainView {
                         .setText(R.id.txt_person_target, item.personTarget)
                         .setImageResource(R.id.img_person_sex, SexType.getSexRes(item.personSex));
 
+                final String personId = item.personId;
                 //绑定事件
                 View.OnClickListener listener = new View.OnClickListener() {
 
                     @Override
                     public void onClick(View view) {
-                        // 点击item
-
+                        Intent intent = new Intent(MainActivity.this, PersonDetailActivity.class);
+                        intent.putExtra(PersonDetailActivity.Intent_Key, personId);
+                        startActivity(intent);
                     }
                 };
                 helper.setOnClickListener(R.id.layout_person_item_root, listener);

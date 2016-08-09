@@ -9,13 +9,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.luis.nicky.qianxianjun.R;
-import com.luis.nicky.qianxianjun.entry.EducationLevel;
-import com.luis.nicky.qianxianjun.helper.PersonNetBean;
-import com.luis.nicky.qianxianjun.entry.SexType;
 import com.luis.nicky.qianxianjun.base.basic.BaseActivity;
 import com.luis.nicky.qianxianjun.base.utils.ToastUtil;
 import com.luis.nicky.qianxianjun.base.view.DialogUtil;
 import com.luis.nicky.qianxianjun.base.view.TitleBar;
+import com.luis.nicky.qianxianjun.entry.EducationLevel;
+import com.luis.nicky.qianxianjun.entry.SexType;
+import com.luis.nicky.qianxianjun.helper.PersonNetBean;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddResultCallBack;
 import com.luis.nicky.qianxianjun.module.add.interfaces.IAddTargetPresenter;
 import com.luis.nicky.qianxianjun.module.add.presenter.AddTargetPersenter;
@@ -157,7 +157,7 @@ public class AddTargetActivity extends BaseActivity {
             return;
         }
 
-        DialogUtil.instance().showLoadingDialog(AddTargetActivity.this, "开始上传");
+        DialogUtil.instance().showLoadingDialog(  "开始上传");
         //开始添加
         addTargetPresenter.addNewTarget(bean, personId, new IAddResultCallBack() {
             @Override
