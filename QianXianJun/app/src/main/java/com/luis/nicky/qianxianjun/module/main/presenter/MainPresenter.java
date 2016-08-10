@@ -98,12 +98,9 @@ public class MainPresenter implements IMainPresenter {
                     }
                     personDatas.clear();
                     // 将本次查询的数据添加到数据中
-                    for (Person person : list) {
+                    for (Person obj : list) {
                         PersonItemBean itemBean = new PersonItemBean(mContext);
-                        itemBean.personId = person.getUUID();
-                        itemBean.personSex = person.getmUserSex();
-                        itemBean.personAge = 11;
-                        itemBean.personArea = person.getArea();
+                        itemBean.person = obj;
                         personDatas.add(itemBean);
                     }
                     curPage++;
@@ -127,7 +124,8 @@ public class MainPresenter implements IMainPresenter {
     }
 
     //查询用户的标准
-    private void queryTargetPerson(final List<Person> persons, final ResultCallback callback) {
+    private void queryTargetPerson(final List<Person> persons, final ResultCallback
+            callback) {
         //用户的id List
         List<String> personIdList = new ArrayList<>();
         for (Person person : persons) {
@@ -153,14 +151,14 @@ public class MainPresenter implements IMainPresenter {
                     for (TargetPerson person : list) {
                         for (int index = existCount - 1; index >= 0; index--) {
                             PersonItemBean itemBean = personDatas.get(index);
-                            if (itemBean.personId.equals(person.getOwnerId())) {
-                                itemBean.personTarget = person.getDescription();
+                            if (itemBean.person.getUUID().equals(person.getOwnerId())) {
+                                itemBean.personTarget = person;
                             }
                         }
                     }
                 }
                 //不管有没有查询到都会进行查询照片信息
-                queryPerson(persons, callback);
+                queryPhotos(persons, callback);
             }
 
             @Override
@@ -172,7 +170,7 @@ public class MainPresenter implements IMainPresenter {
     }
 
     //查询用户的照片
-    private void queryPerson(List<Person> persons, final ResultCallback callback) {
+    private void queryPhotos(List<Person> persons, final ResultCallback callback) {
         //用户的id List
         List<String> personIdList = new ArrayList<>();
         for (Person person : persons) {
@@ -196,8 +194,8 @@ public class MainPresenter implements IMainPresenter {
                     //读取数据
                     for (Photo photo : list) {
                         for (PersonItemBean itemBean : personDatas) {
-                            if (itemBean.personId.equals(photo.getmUserID())) {
-                                itemBean.personHeadUrl = photo.getmPhotoUrl();
+                            if (itemBean.person.getUUID().equals(photo.getmUserID())) {
+                                itemBean.photos.add(photo.getmPhotoUrl());
                                 break;
                             }
                         }

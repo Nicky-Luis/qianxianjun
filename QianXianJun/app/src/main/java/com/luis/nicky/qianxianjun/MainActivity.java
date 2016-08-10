@@ -1,6 +1,7 @@
 package com.luis.nicky.qianxianjun;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ListView;
@@ -25,6 +26,7 @@ import java.util.List;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
+import de.greenrobot.event.EventBus;
 
 public class MainActivity extends BaseActivity implements IMainView {
 
@@ -94,28 +96,37 @@ public class MainActivity extends BaseActivity implements IMainView {
     private void lisviewSet() {
 
         //初始化
-        adapter = new QuickAdapter<PersonItemBean>(MainActivity.this, R.layout.item_main_person,
+        adapter = new QuickAdapter<PersonItemBean>(MainActivity.this, R.layout
+                .item_main_person,
                 new ArrayList<PersonItemBean>()) {
 
             @Override
-            protected void convert(BaseAdapterHelper helper, PersonItemBean item) {
+            protected void convert(BaseAdapterHelper helper, final PersonItemBean item) {
                 //绑定数据
 
-                helper.setImageUrl(R.id.img_person_head, item.personHeadUrl)
-                        .setText(R.id.txt_person_age, item.personAge + "岁")
-                        .setText(R.id.txt_person_area, item.personArea)
-                        .setText(R.id.txt_person_target, item.personTarget)
-                        .setImageResource(R.id.img_person_sex, SexType.getSexRes(item.personSex));
+                helper.setImageUrl(R.id.img_person_head, item.photos.get(0))
+                        .setText(R.id.txt_person_age, item.person.getBirthday() + "岁")
+                        .setText(R.id.txt_person_area, item.person.getArea())
+                        .setText(R.id.txt_person_target, item.personTarget
+                                .getDescription())
+                        .setImageResource(R.id.img_person_sex, SexType.getSexRes(item
+                                .person.getmUserSex()));
 
-                final String personId = item.personId;
                 //绑定事件
                 View.OnClickListener listener = new View.OnClickListener() {
 
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(MainActivity.this, PersonDetailActivity.class);
-                        intent.putExtra(PersonDetailActivity.Intent_Key, personId);
+                        Intent intent = new Intent(MainActivity.this,
+                                PersonDetailActivity.class);
                         startActivity(intent);
+
+                        //延时发送
+                        new Handler().postDelayed(new Runnable(){
+                            public void run() {
+                                EventBus.getDefault().post(item);
+                            }
+                        }, 50);
                     }
                 };
                 helper.setOnClickListener(R.id.layout_person_item_root, listener);
@@ -128,9 +139,11 @@ public class MainActivity extends BaseActivity implements IMainView {
         personListView.setMode(PullToRefreshBase.Mode.BOTH);
         //绑定adpter
         personListView.setAdapter(adapter);
-        personListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+        personListView.setOnRefreshListener(new PullToRefreshBase
+                .OnRefreshListener2<ListView>() {
             @Override
-            public void onPullDownToRefresh(PullToRefreshBase<ListView> pullToRefreshBase) {
+            public void onPullDownToRefresh(PullToRefreshBase<ListView>
+                                                    pullToRefreshBase) {
                 //下拉
                 mainPresenter.refreshData(false, new MainPresenter.ResultCallback() {
                     @Override

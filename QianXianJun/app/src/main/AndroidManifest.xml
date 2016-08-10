@@ -2,7 +2,6 @@
 <manifest package="com.luis.nicky.qianxianjun"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <!-- 允许联网 -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <!-- 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
@@ -46,6 +45,10 @@
         <activity android:name=".module.add.AddPhotoActivity">
         </activity>
         <activity android:name=".base.view.gallery.GalleyActivity"/>
+        <activity android:name=".module.detail.MatchPersonActivity">
+        </activity>
+        <activity android:name=".module.detail.PersonAlbumsActivity">
+        </activity>
     </application>
 
 </manifest>

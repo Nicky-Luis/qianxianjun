@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/activity_person_albums"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.luis.nicky.qianxianjun.module.detail.PersonAlbumsActivity">
+
+    <GridView
+        android:id="@+id/gv_person_albums"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/selector_deep_white_click"
+        android:columnWidth="100dp"
+        android:horizontalSpacing="10dp"
+        android:numColumns="auto_fit"
+        android:padding="5dp"
+        android:scrollbars="none"
+        android:verticalSpacing="10dp" >
+    </GridView>
+
+</android.support.constraint.ConstraintLayout>

@@ -27,7 +27,6 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
     private ProgressDialog mProgressDialog;
     protected FragmentManager fragmentManager;
     protected ViewDataBinding viewDataBinding;
-    protected boolean dataBindingFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,7 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
                     "Please return the layout id in setLayoutId method,as simple as R" +
                             ".layout.cr_news_fragment_layout")
                     .printStackTrace();
-        } else if (dataBindingFlag) {
+        } else if (setDataBindingFlag()) {
             viewDataBinding = DataBindingUtil.setContentView(this, id);
             loadLayout(viewDataBinding.getRoot());
         } else {
@@ -73,13 +72,22 @@ public abstract class BaseActivity extends FragmentActivity implements IBaseView
 
     public abstract void initPresenter();
 
+    //设置默认情况下不是通过databinding加载数据
+    public boolean setDataBindingFlag() {
+        return false;
+    }
+
     @Override
     public void finish() {
         super.finish();
     }
 
-    public void setDataBindingFlag(boolean flag) {
-        this.dataBindingFlag = flag;
+    //获取根布局
+    public View getRootView() {
+        if (null == viewDataBinding) {
+            return null;
+        }
+        return viewDataBinding.getRoot();
     }
 
     /**

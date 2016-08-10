@@ -25,7 +25,7 @@ import de.greenrobot.event.EventBus;
 
 public class AddPhotoActivity extends BaseActivity {
 
-    //Intent_Key
+    //Intent_Key_Id
     public static final String Intent_Key = "PERSON_ID";
     //标头栏
     @InjectView(R.id.title_bar)
