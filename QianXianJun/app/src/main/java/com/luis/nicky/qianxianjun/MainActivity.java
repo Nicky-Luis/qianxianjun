@@ -102,9 +102,10 @@ public class MainActivity extends BaseActivity implements IMainView {
 
             @Override
             protected void convert(BaseAdapterHelper helper, final PersonItemBean item) {
+                //头像
+                String headPhotoUrls = item.photos.size() > 0 ? item.photos.get(0) : "";
                 //绑定数据
-
-                helper.setImageUrl(R.id.img_person_head, item.photos.get(0))
+                helper.setImageUrl(R.id.img_person_head, headPhotoUrls)
                         .setText(R.id.txt_person_age, item.person.getBirthday() + "岁")
                         .setText(R.id.txt_person_area, item.person.getArea())
                         .setText(R.id.txt_person_target, item.personTarget
@@ -122,7 +123,7 @@ public class MainActivity extends BaseActivity implements IMainView {
                         startActivity(intent);
 
                         //延时发送
-                        new Handler().postDelayed(new Runnable(){
+                        new Handler().postDelayed(new Runnable() {
                             public void run() {
                                 EventBus.getDefault().post(item);
                             }
@@ -211,5 +212,4 @@ public class MainActivity extends BaseActivity implements IMainView {
         return super.onKeyDown(keyCode, event);
     }
 
-    //////////////////////////////////////////////////////
 }

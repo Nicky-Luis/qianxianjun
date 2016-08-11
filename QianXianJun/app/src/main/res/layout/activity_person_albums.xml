@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    android:id="@+id/activity_person_albums"
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.luis.nicky.qianxianjun.module.detail.PersonAlbumsActivity">
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <com.luis.nicky.qianxianjun.base.view.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <GridView
         android:id="@+id/gv_person_albums"
@@ -18,7 +20,7 @@
         android:numColumns="auto_fit"
         android:padding="5dp"
         android:scrollbars="none"
-        android:verticalSpacing="10dp" >
+        android:verticalSpacing="10dp">
     </GridView>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

@@ -84,7 +84,8 @@ public class BaseAdapterHelper {
      * @return A BaseAdapterHelper instance.
      */
     public static BaseAdapterHelper get(Context context,
-                                        View convertView, ViewGroup parent, int layoutId) {
+                                        View convertView, ViewGroup parent, int
+                                                layoutId) {
         return get(context, convertView, parent, layoutId, -1);
     }
 
@@ -234,6 +235,9 @@ public class BaseAdapterHelper {
      * @return The BaseAdapterHelper for chaining.
      */
     public BaseAdapterHelper setImageUrl(int viewId, String imageUrl) {
+        if (imageUrl == null || imageUrl.equals("")) {
+            return this;
+        }
         Uri uri = Uri.parse(imageUrl);
         SimpleDraweeView view = retrieveView(viewId);
         /**
@@ -520,7 +524,8 @@ public class BaseAdapterHelper {
     /**
      * Retrieve the overall position of the data in the list.
      *
-     * @throws IllegalArgumentException If the position hasn't been set at the construction of the
+     * @throws IllegalArgumentException If the position hasn't been set at the
+     * construction of the
      *                                  this helper.
      */
     public int getPosition() {

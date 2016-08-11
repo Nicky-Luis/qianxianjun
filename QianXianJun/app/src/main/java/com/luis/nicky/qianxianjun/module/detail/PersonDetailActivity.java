@@ -3,7 +3,6 @@ package com.luis.nicky.qianxianjun.module.detail;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
@@ -16,17 +15,15 @@ import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.luis.nicky.qianxianjun.R;
 import com.luis.nicky.qianxianjun.base.basic.BaseActivityWithTitleBar;
-import com.luis.nicky.qianxianjun.base.view.DialogUtil;
 import com.luis.nicky.qianxianjun.base.view.TitleBar;
 import com.luis.nicky.qianxianjun.databinding.ActivityPersonDetailBinding;
 import com.luis.nicky.qianxianjun.helper.PersonItemBean;
-import com.luis.nicky.qianxianjun.model.Person;
-import com.luis.nicky.qianxianjun.model.TargetPerson;
 import com.luis.nicky.qianxianjun.module.detail.interfaces.IDetailPresenter;
 import com.luis.nicky.qianxianjun.module.detail.presenter.DetailPresenter;
 
 import java.util.List;
 
+import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 
 import static com.luis.nicky.qianxianjun.module.detail.MatchPersonActivity.Intent_Key_Id;
@@ -37,6 +34,25 @@ public class PersonDetailActivity extends BaseActivityWithTitleBar {
     private IDetailPresenter detailPresenter;
     //rootView
     private View rootView;
+    //用户id
+    private String personId;
+
+
+    @OnClick(value = {R.id.ly_person_albums_root_view})
+    public void onclick(View v) {
+        switch (v.getId()) {
+            //搜索
+            case R.id.ly_person_albums_root_view:
+                Intent intentAlbums = new Intent(PersonDetailActivity.this,
+                        PersonAlbumsActivity.class);
+                intentAlbums.putExtra(PersonAlbumsActivity.Intent_Key_Id, personId);
+                startActivity(intentAlbums);
+                break;
+
+            default:
+                break;
+        }
+    }
 
     @Override
     public int setLayoutId() {
@@ -59,17 +75,20 @@ public class PersonDetailActivity extends BaseActivityWithTitleBar {
         EventBus.getDefault().register(this);
         this.rootView = getRootView();
         initTitleBar();
-        //一进入页面就加载
-        DialogUtil.instance().showLoadingDialog("加载数据中");
     }
 
     //eventbus
     public void onEventMainThread(PersonItemBean itemBean) {
-        String personId = itemBean.person.getUUID();
-        String headUrl = itemBean.photos.get(0);
+        List<String> photoUrls = itemBean.photos;
+        personId = itemBean.person.getUUID();
+        String headUrl = photoUrls.get(0);
         setImageView(R.id.img_person_head, headUrl);
 
-        getPersonInfo(personId);
+        //databing绑定数据
+        ActivityPersonDetailBinding binding = (ActivityPersonDetailBinding)
+                viewDataBinding;
+        binding.setPerson(itemBean.person);
+        binding.setTarget(itemBean.personTarget);
         initAlbumsView(itemBean.photos);
     }
 
@@ -96,47 +115,8 @@ public class PersonDetailActivity extends BaseActivityWithTitleBar {
         setImageView(R.id.img_person_photo1, photos.get(1));
         setImageView(R.id.img_person_photo2, photos.get(2));
         setImageView(R.id.img_person_photo3, photos.get(3));
-
-        //跳转至相册页面
-        rootView.findViewById(R.id.ly_person_albums_root_view).setOnClickListener(
-                new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View view) {
-                        Intent intentAlbums = new Intent(PersonDetailActivity.this,
-                                PersonAlbumsActivity.class);
-                        startActivity(intentAlbums);
-                        //延时发送
-                        new Handler().postDelayed(new Runnable() {
-                            public void run() {
-                                EventBus.getDefault().post(photos);
-                            }
-                        }, 50);
-                    }
-                });
     }
 
-    //获取用户信息
-    private void getPersonInfo(String personId) {
-        detailPresenter.getPersonInfo(personId, new DetailPresenter
-                .ResultCallback() {
-            @Override
-            public void onSuccessed(Person person, TargetPerson targetPerson) {
-                DialogUtil.dismissDialog();
-
-                //databing绑定数据
-                ActivityPersonDetailBinding binding = (ActivityPersonDetailBinding)
-                        viewDataBinding;
-                binding.setPerson(person);
-                binding.setTarget(targetPerson);
-            }
-
-            @Override
-            public void onFailed() {
-                DialogUtil.dismissDialog();
-            }
-        });
-    }
 
     //设置图片
     private void setImageView(int id, String imageUrl) {

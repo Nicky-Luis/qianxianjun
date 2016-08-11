@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#B3E5FC</color>
 
+    <!--透明-->
+    <color name="transparent">#00000000</color>
     <!-- 辅白色 -->
     <color name="main_white">#ffffff</color>
     <!-- 主黑色 -->

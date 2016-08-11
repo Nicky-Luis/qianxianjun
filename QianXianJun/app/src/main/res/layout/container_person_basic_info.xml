@@ -93,9 +93,10 @@
             android:layout_height="wrap_content"
             android:background="@color/main_deep_white"
             android:clickable="true"
-            android:focusable="true"
+            android:descendantFocusability="blocksDescendants"
             android:gravity="center_vertical"
             android:orientation="horizontal"
+            android:onClick="onclick"
             android:padding="10dp">
 
             <TextView

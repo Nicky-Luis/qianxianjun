@@ -36,19 +36,18 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"/>
+
+
         <activity android:name=".module.add.AddPersonActivity"/>
         <activity android:name=".module.detail.PersonDetailActivity"/>
-        <activity android:name=".module.add.AddTargetActivity">
-        </activity>
-        <activity android:name=".module.search.SearchActivity">
-        </activity>
-        <activity android:name=".module.add.AddPhotoActivity">
-        </activity>
+        <activity android:name=".module.add.AddTargetActivity"/>
+        <activity android:name=".module.search.SearchActivity"/>
+        <activity android:name=".module.add.AddPhotoActivity"/>
         <activity android:name=".base.view.gallery.GalleyActivity"/>
-        <activity android:name=".module.detail.MatchPersonActivity">
-        </activity>
-        <activity android:name=".module.detail.PersonAlbumsActivity">
-        </activity>
+        <activity android:name=".base.view.BigImgLookActivity"/>
+        <activity android:name=".module.detail.MatchPersonActivity"/>
+        <activity android:name=".module.detail.PersonAlbumsActivity"/>
+
     </application>
 
 </manifest>
